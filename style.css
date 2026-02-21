@@ -288,6 +288,7 @@ body {
 }
 .btn--outline:hover {
   background: #f8fafc;
+  color: #0f172a;
   border-color: #0f172a;
 }
 
