@@ -12,6 +12,24 @@
 </head>
 
 <body>
+    <nav class="stylish-nav">
+        <div class="container nav-container">
+            <!-- Логотип: Имя залито, Фамилия контуром -->
+            <a href="#" class="logo-box">
+                <span class="name-filled">DAVID</span>
+                <span class="name-outlined">SHAMEY</span>
+            </a>
+
+            <!-- Декоративный элемент справа (меню) -->
+            <div class="menu-icon">
+                <span class="menu-text">MENU</span>
+                <div class="hamburger">
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+        </div>
+    </nav>
 
     <!-- Шапка / Герой -->
     <header class="hero">
@@ -40,53 +58,102 @@
                 <!-- Товар 1 -->
                 <div class="product-card reveal">
                     <div class="product-card__image">
-                        <!-- Заглушка обложки -->
-                        <div class="placeholder-cover" style="background-color: #e2e8f0;">
-                            <img src="Images/IMG_0439.PNG" alt="">
-                        </div>
+                        <img src="Images/IMG_0439.PNG" alt="Методичка">
+                        <!-- Маленькая фишка: цена поверх картинки (опционально) -->
+                        <div class="card-price-badge">990 ₽</div>
                     </div>
+
                     <div class="product-card__info">
                         <h3>Основы мастерства</h3>
-                        <p class="description">Базовое руководство для новичков. 50 страниц теории и практики.</p>
-                        <div class="product-card__bottom">
-                            <span class="price">990 ₽</span>
-                            <button class="btn btn--outline buy-btn">Купить</button>
+                        <p class="description">Базовое руководство для новичков. 50 страниц теории и практики, которые
+                            изменят ваш хват.</p>
+
+                        <div class="product-card__actions">
+                            <!-- Кнопка "Подробнее" теперь аккуратная и открывает модалку -->
+                            <button class="btn btn--outline open-modal-btn" data-title="Основы мастерства"
+                                data-price="990 ₽"
+                                data-desc='
+        <p>Рассмотрим эффективную программу упражнений, которая поможет вам развить силу и нарастить мышцы.</p>
+        
+        <h3>Подъём гантелей на бицепс</h3>
+        <p>Одно из самых популярных упражнений для наращивания мышечной массы в области рук. Оно активно задействует как верхнюю, так и нижнюю часть бицепса, а также верх предплечья.</p>
+        
+        <h4>Техника выполнения</h4>
+        <ul>
+            <li>Возьмите гантели в руки, ладони обращены друг к другу.</li>
+            <li>На выдохе плавно сгибайте руки, одновременно разворачивая кисти наружу (супинация).</li>
+            <li>На вдохе плавно вернитесь в исходное положение.</li>
+        </ul>
+        
+        <span class="photo-credit">Фото: Юрий Аверьянов</span>
+        
+        <div class="important-note">
+            <h4>Важные моменты</h4>
+            <p>Начинайте с малых весов отягощения. Не раскачивайте корпус и не используйте инерцию — это чревато травмами.</p>
+        </div>
+    '
+                                data-images='["Images/img1.jpg", "Images/img2.jpg", "Images/img3.jpg", "Images/img4.jpg"]'>
+                                Подробнее
+                            </button>
+
+                            <!-- Кнопка "Купить" — акцентная -->
+                            <button class="btn btn--primary buy-btn">Купить</button>
                         </div>
                     </div>
                 </div>
 
                 <!-- Товар 2 -->
-                <div class="product-card reveal delay-100">
+               <div class="product-card reveal">
                     <div class="product-card__image">
-                        <!-- Заглушка обложки -->
-                        <div class="placeholder-cover" style="background-color: #e2e8f0;">
-                            <img src="Images/IMG_0439.PNG" alt="">
-                        </div>
+                        <img src="Images/IMG_0439.PNG" alt="Методичка">
+                        <!-- Маленькая фишка: цена поверх картинки (опционально) -->
+                        <div class="card-price-badge">990 ₽</div>
                     </div>
+
                     <div class="product-card__info">
-                        <h3>Продвинутые техники</h3>
-                        <p class="description">Глубокое погружение в нюансы профессии. Разбор реальных кейсов.</p>
-                        <div class="product-card__bottom">
-                            <span class="price">1 490 ₽</span>
-                            <button class="btn btn--outline buy-btn">Купить</button>
+                        <h3>Основы мастерства</h3>
+                        <p class="description">Базовое руководство для новичков. 50 страниц теории и практики, которые
+                            изменят ваш хват.</p>
+
+                        <div class="product-card__actions">
+                            <!-- Кнопка "Подробнее" теперь аккуратная и открывает модалку -->
+                            <button class="btn btn--outline open-modal-btn" data-title="Основы мастерства"
+                                data-price="990 ₽"
+                                data-desc="<h3>Ваш старт в армрестлинге</h3><p>Полный разбор базовых движений...</p>"
+                                data-images='["Images/img1.jpg", "Images/img2.jpg", "Images/img3.jpg", "Images/img4.jpg"]'>
+                                Подробнее
+                            </button>
+
+                            <!-- Кнопка "Купить" — акцентная -->
+                            <button class="btn btn--primary buy-btn">Купить</button>
                         </div>
                     </div>
                 </div>
 
                 <!-- Товар 3 -->
-                <div class="product-card reveal delay-200">
+               <div class="product-card reveal">
                     <div class="product-card__image">
-                        <!-- Заглушка обложки -->
-                        <div class="placeholder-cover" style="background-color: #e2e8f0;">
-                            <img src="Images/IMG_0439.PNG" alt="">
-                        </div>
+                        <img src="Images/IMG_0439.PNG" alt="Методичка">
+                        <!-- Маленькая фишка: цена поверх картинки (опционально) -->
+                        <div class="card-price-badge">990 ₽</div>
                     </div>
+
                     <div class="product-card__info">
-                        <h3>Секреты монетизации</h3>
-                        <p class="description">Как начать зарабатывать на своих навыках уже завтра.</p>
-                        <div class="product-card__bottom">
-                            <span class="price">1 990 ₽</span>
-                            <button class="btn btn--outline buy-btn">Купить</button>
+                        <h3>Основы мастерства</h3>
+                        <p class="description">Базовое руководство для новичков. 50 страниц теории и практики, которые
+                            изменят ваш хват.</p>
+
+                        <div class="product-card__actions">
+                            <!-- Кнопка "Подробнее" теперь аккуратная и открывает модалку -->
+                            <button class="btn btn--outline open-modal-btn" data-title="Основы мастерства"
+                                data-price="990 ₽"
+                                data-desc="<h3>Ваш старт в армрестлинге</h3><p>Полный разбор базовых движений...</p>"
+                                data-images='["Images/img1.jpg", "Images/img2.jpg", "Images/img3.jpg", "Images/img4.jpg"]'>
+                                Подробнее
+                            </button>
+
+                            <!-- Кнопка "Купить" — акцентная -->
+                            <button class="btn btn--primary buy-btn">Купить</button>
                         </div>
                     </div>
                 </div>
@@ -100,6 +167,36 @@
             <p>&copy; 2026 Давид Шамей. Все права защищены.</p>
         </div>
     </footer>
+
+    <!-- Модальное окно (одно для всех товаров) -->
+    <div id="product-modal" class="modal">
+        <div class="modal-overlay"></div>
+        <div class="modal-window">
+            <button class="modal-close">&times;</button>
+
+            <div class="modal-body">
+                <!-- Слева: Галерея -->
+                <div class="modal-gallery">
+                    <div class="gallery-track">
+                        <!-- Сюда JS будет вставлять картинки -->
+                    </div>
+                </div>
+
+                <!-- Справа: Описание -->
+                <div class="modal-info">
+                    <h2 id="modal-title">Название</h2>
+                    <div id="modal-desc" class="modal-desc-content">
+                        <!-- Сюда JS вставит текст -->
+                    </div>
+                    <div class="modal-footer">
+                        <span id="modal-price" class="price">0 ₽</span>
+                        <button class="btn btn--primary">Купить сейчас</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
 
     <script src="script.js"></script>
 </body>

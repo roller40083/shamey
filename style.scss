@@ -65,6 +65,106 @@ body {
     }
 }
 
+// Стильная навигация
+.stylish-nav {
+    position: fixed; // Фиксируем сверху
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 20px 0;
+    z-index: 100;
+    background: rgba(255, 255, 255, 0.85); // Полупрозрачный белый
+    backdrop-filter: blur(10px); // Эффект матового стекла (размытие фона)
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+
+    .nav-container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    // ЛОГОТИП
+    .logo-box {
+        text-decoration: none;
+        font-size: 1.8rem; // Размер шрифта
+        font-weight: 900; // Самый жирный
+        line-height: 1;
+        letter-spacing: -0.02em;
+        display: flex;
+        gap: 8px; // Расстояние между словами
+        align-items: center;
+        transition: opacity 0.3s;
+
+        &:hover {
+            opacity: 0.7;
+        }
+
+        // Стиль имени (DAVID)
+        .name-filled {
+            color: #0f172a; // Темный цвет
+        }
+
+        // Стиль фамилии (SHAMEY) - КОНТУР
+        .name-outlined {
+            color: transparent; // Прозрачная заливка
+            -webkit-text-stroke: 1px #0f172a; // Обводка текста (черная)
+            position: relative;
+        }
+    }
+
+    // Правая часть (Меню)
+    .menu-icon {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        cursor: pointer;
+
+        .menu-text {
+            font-size: 0.75rem;
+            font-weight: 700;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+        }
+
+        .hamburger {
+            width: 30px;
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+            align-items: flex-end; // Выравнивание полосок по правому краю
+
+            span {
+                display: block;
+                height: 2px;
+                background-color: #0f172a;
+                transition: 0.3s;
+
+                &:first-child {
+                    width: 100%;
+                }
+
+                &:last-child {
+                    width: 60%;
+                }
+
+                // Нижняя полоска короче - это стильно
+            }
+        }
+
+        // Анимация при наведении на меню
+        &:hover .hamburger span:last-child {
+            width: 100%;
+        }
+    }
+}
+
+// ВАЖНО: Добавь отступ для body, чтобы шапка не перекрывала контент
+body {
+    padding-top: 80px;
+}
+
+
+
 // Hero Секция (Автор)
 .hero {
     padding: 100px 0;
@@ -149,42 +249,50 @@ body {
 
 .product-card {
     background: white;
-    border-radius: $border-radius;
+    border-radius: 20px;
     overflow: hidden;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
-    transition: $transition;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+    transition: all 0.3s ease;
     display: flex;
     flex-direction: column;
+    height: 100%; // Чтобы все карточки были одной высоты
+    border: 1px solid #f1f5f9;
 
     &:hover {
         transform: translateY(-10px);
         box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        border-color: #e2e8f0;
+
+        .product-card__image img {
+            transform: scale(1.05); // Эффект зума при наведении
+        }
     }
 
     &__image {
-        height: 350px;
-        background-color: #eee;
-        position: relative; // нужно, если плейсхолдер будет поверх
+        height: 280px;
+        overflow: hidden;
+        position: relative;
+        background: #f8fafc;
 
         img {
             width: 100%;
             height: 100%;
-            object-fit: cover; // ПОЛНОСТЬЮ заполнит контейнер (обрежется)
-            // или object-fit: contain; // Целиком поместится, но будут полосы
+            object-fit: cover;
+            transition: transform 0.5s ease;
         }
 
-        .placeholder-cover {
-            // Если плейсхолдер нужен, когда нет картинки
-            width: 100%;
-            height: 100%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: $color-text-light;
-            font-weight: 600;
-
-            // Спрятать, если есть картинка
-            // Можно через JS или показывать поверх
+        // Бейджик с ценой поверх фото
+        .card-price-badge {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: white;
+            padding: 6px 14px;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 0.9rem;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            z-index: 2;
         }
     }
 
@@ -192,31 +300,51 @@ body {
         padding: 25px;
         display: flex;
         flex-direction: column;
-        flex-grow: 1;
+        flex-grow: 1; // Заполняет пространство, толкая кнопки вниз
 
         h3 {
-            font-size: 1.25rem;
-            margin-bottom: 10px;
+            font-size: 1.4rem;
+            font-weight: 700;
+            margin-bottom: 12px;
+            color: #0f172a;
+            line-height: 1.3;
         }
 
         .description {
             font-size: 0.95rem;
-            color: $color-text-light;
-            margin-bottom: 20px;
-            flex-grow: 1; // Толкает цену вниз
+            color: #64748b;
+            margin-bottom: 25px;
+            line-height: 1.5;
+            flex-grow: 1; // Описание занимает всё место до кнопок
         }
     }
 
-    &__bottom {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        margin-top: auto;
+    &__actions {
+        display: grid;
+        grid-template-columns: 1fr 1fr; // Две кнопки в ряд
+        gap: 10px;
+        margin-top: auto; // Прижимает блок к низу карточки
 
-        .price {
-            font-size: 1.2rem;
-            font-weight: 600;
+        .btn {
+            padding: 12px 10px; // Чуть меньше падинги, чтобы влезли
+            font-size: 0.85rem;
+            text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            white-space: nowrap;
         }
+    }
+}
+
+// Дополнительная правка для кнопок (если еще нет)
+.btn--outline {
+    background: transparent;
+    border: 1.5px solid #e2e8f0;
+    color: #0f172a;
+    &:hover {
+        background: #f8fafc;
+        border-color: #0f172a;
     }
 }
 
@@ -245,4 +373,190 @@ footer {
 
 .delay-200 {
     transition-delay: 0.2s;
+}
+
+// Модальное окно
+.modal {
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100%;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+    // Плавность появления
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+
+    &.active {
+        opacity: 1;
+        visibility: visible;
+        pointer-events: all;
+
+        .modal-window {
+            transform: scale(1) translateY(0);
+            opacity: 1;
+        }
+    }
+
+    &-overlay {
+        position: absolute;
+        top: 0; left: 0; width: 100%; height: 100%;
+        background: rgba(15, 23, 42, 0.85);
+        backdrop-filter: blur(8px);
+    }
+
+    &-window {
+        position: relative;
+        background: white;
+        width: 95%;
+        max-width: 1200px;
+        height: 750px; // Чуть увеличили для удобства чтения
+        border-radius: 24px;
+        display: flex;
+        z-index: 2;
+        overflow: hidden;
+        box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+        
+        // Анимация окна
+        transform: scale(0.9) translateY(20px);
+        opacity: 0;
+        transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+
+        @media (max-width: 768px) {
+            flex-direction: column;
+            height: 90vh;
+            width: 92%;
+        }
+    }
+
+    &-close {
+        position: absolute;
+        top: 20px; right: 20px;
+        background: white; border: none;
+        width: 40px; height: 40px; border-radius: 50%;
+        font-size: 1.8rem; cursor: pointer; z-index: 20;
+        display: flex; align-items: center; justify-content: center;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        transition: all 0.2s;
+        &:hover { transform: rotate(90deg); color: #ef4444; }
+    }
+
+    &-body {
+        display: flex;
+        width: 100%;
+        height: 100%;
+        @media (max-width: 768px) { flex-direction: column; }
+    }
+
+    // --- ГАЛЕРЕЯ (Лево) ---
+    &-gallery {
+        flex: 0 0 auto;
+        width: 450px; // Начальная ширина
+        background: #f8fafc;
+        position: relative;
+        overflow: hidden;
+        transition: width 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+
+        @media (max-width: 768px) {
+            width: 100% !important;
+            height: 280px;
+            flex-shrink: 0;
+        }
+
+        .gallery-track {
+            width: 100%; height: 100%;
+            position: relative;
+        }
+
+        img {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            object-fit: cover;
+            opacity: 0;
+            transform: scale(1.05);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+            
+            &.active {
+                opacity: 1;
+                z-index: 1;
+                transform: scale(1);
+            }
+        }
+    }
+
+    // --- ИНФО (Право) ---
+    &-info {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        background: white;
+        min-width: 380px;
+        position: relative;
+
+        @media (max-width: 768px) { min-width: 100%; }
+
+        h2 {
+            font-size: 2.2rem;
+            font-weight: 800;
+            padding: 40px 40px 20px;
+            color: #0f172a;
+            line-height: 1.2;
+        }
+    }
+
+    // --- КОНТЕНТ СО СКРОЛЛОМ ---
+    &-desc-content {
+        flex: 1;
+        overflow-y: auto;
+        padding: 0 40px 40px;
+        color: #475569;
+        font-size: 1.05rem;
+        line-height: 1.7;
+
+        // Кастомный скроллбар
+        &::-webkit-scrollbar { width: 6px; }
+        &::-webkit-scrollbar-track { background: transparent; }
+        &::-webkit-scrollbar-thumb { 
+            background: #e2e8f0; 
+            border-radius: 10px; 
+            &:hover { background: #cbd5e1; }
+        }
+
+        // Оформление текста внутри
+        h3 { color: #0f172a; margin: 30px 0 15px; font-size: 1.4rem; }
+        h4 { color: #1e293b; margin: 20px 0 10px; font-size: 1.1rem; text-transform: uppercase; letter-spacing: 0.05em; }
+        p { margin-bottom: 15px; }
+        ul { margin-bottom: 20px; padding-left: 20px; 
+            li { margin-bottom: 8px; }
+        }
+
+        .photo-credit { 
+            display: block; font-size: 0.9rem; color: #94a3b8; 
+            margin: 15px 0; font-style: italic; 
+            border-left: 3px solid #f1f5f9; padding-left: 12px;
+        }
+
+        .important-note {
+            background: #f8fafc;
+            padding: 20px;
+            border-radius: 16px;
+            border-left: 4px solid #0f172a;
+            margin: 25px 0;
+            h4 { margin-top: 0; color: #0f172a; }
+        }
+    }
+
+    &-footer {
+        padding: 25px 40px;
+        background: white;
+        border-top: 1px solid #f1f5f9;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        .price { font-size: 1.5rem; font-weight: 700; color: #0f172a; }
+    }
 }
