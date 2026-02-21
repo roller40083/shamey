@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Авторские методички</title>
+    <!-- Подключаем скомпилированный CSS -->
+    <link rel="stylesheet" href="style.css">
+    <!-- Шрифт Inter для современного вида -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+    <!-- Шапка / Герой -->
+    <header class="hero">
+        <div class="container hero__container">
+            <div class="hero__text reveal">
+                <h1>Знания, которые <br>меняют подход</h1>
+                <p>Привет! Я Шамей Давид. Здесь я собрал свой опыт в удобные методички, которые помогут тебе вырасти в
+                    силе.</p>
+                <a href="#shop" class="btn btn--primary">Смотреть материалы</a>
+            </div>
+            <div class="hero__image reveal delay-100">
+                <!-- Заглушка для фото автора. Замени src на свое фото -->
+                <img src="https://sun9-42.userapi.com/s/v1/ig2/tCoq5yz_pr9cCBdt19ozKkmj9s-KGaiJ9b4mSRIT_d7LZt55xhRzSs72LYa_jTIpaE0vIj-6RNeOXWJk4oZju1AC.jpg?quality=95&as=32x48,48x72,72x108,108x162,160x240,240x361,360x541,480x721,540x811,640x962,720x1082,1080x1623,1280x1923,1440x2164,1661x2496&from=bu&cs=1661x0"
+                    alt="Фото автора">
+            </div>
+        </div>
+    </header>
+
+    <!-- Секция с товарами -->
+    <section id="shop" class="shop">
+        <div class="container">
+            <h2 class="section-title reveal">Методички</h2>
+
+            <div class="products-grid">
+
+                <!-- Товар 1 -->
+                <div class="product-card reveal">
+                    <div class="product-card__image">
+                        <!-- Заглушка обложки -->
+                        <div class="placeholder-cover" style="background-color: #e2e8f0;">
+                            <img src="Images/IMG_0439.PNG" alt="">
+                        </div>
+                    </div>
+                    <div class="product-card__info">
+                        <h3>Основы мастерства</h3>
+                        <p class="description">Базовое руководство для новичков. 50 страниц теории и практики.</p>
+                        <div class="product-card__bottom">
+                            <span class="price">990 ₽</span>
+                            <button class="btn btn--outline buy-btn">Купить</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Товар 2 -->
+                <div class="product-card reveal delay-100">
+                    <div class="product-card__image">
+                        <!-- Заглушка обложки -->
+                        <div class="placeholder-cover" style="background-color: #e2e8f0;">
+                            <img src="Images/IMG_0439.PNG" alt="">
+                        </div>
+                    </div>
+                    <div class="product-card__info">
+                        <h3>Продвинутые техники</h3>
+                        <p class="description">Глубокое погружение в нюансы профессии. Разбор реальных кейсов.</p>
+                        <div class="product-card__bottom">
+                            <span class="price">1 490 ₽</span>
+                            <button class="btn btn--outline buy-btn">Купить</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Товар 3 -->
+                <div class="product-card reveal delay-200">
+                    <div class="product-card__image">
+                        <!-- Заглушка обложки -->
+                        <div class="placeholder-cover" style="background-color: #e2e8f0;">
+                            <img src="Images/IMG_0439.PNG" alt="">
+                        </div>
+                    </div>
+                    <div class="product-card__info">
+                        <h3>Секреты монетизации</h3>
+                        <p class="description">Как начать зарабатывать на своих навыках уже завтра.</p>
+                        <div class="product-card__bottom">
+                            <span class="price">1 990 ₽</span>
+                            <button class="btn btn--outline buy-btn">Купить</button>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 Давид Шамей. Все права защищены.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
