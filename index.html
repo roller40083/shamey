@@ -71,8 +71,7 @@
                         <div class="product-card__actions">
                             <!-- Кнопка "Подробнее" теперь аккуратная и открывает модалку -->
                             <button class="btn btn--outline open-modal-btn" data-title="Основы мастерства"
-                                data-price="990 ₽"
-                                data-desc='
+                                data-price="990 ₽" data-desc='
         <p>Рассмотрим эффективную программу упражнений, которая поможет вам развить силу и нарастить мышцы.</p>
         
         <h3>Подъём гантелей на бицепс</h3>
@@ -91,8 +90,7 @@
             <h4>Важные моменты</h4>
             <p>Начинайте с малых весов отягощения. Не раскачивайте корпус и не используйте инерцию — это чревато травмами.</p>
         </div>
-    '
-                                data-images='["Images/img1.jpg", "Images/img2.jpg", "Images/img3.jpg", "Images/img4.jpg"]'>
+    ' data-images='["Images/img1.jpg", "Images/img2.jpg", "Images/img3.jpg", "Images/img4.jpg"]'>
                                 Подробнее
                             </button>
 
@@ -103,7 +101,7 @@
                 </div>
 
                 <!-- Товар 2 -->
-               <div class="product-card reveal">
+                <div class="product-card reveal">
                     <div class="product-card__image">
                         <img src="Images/IMG_0439.PNG" alt="Методичка">
                         <!-- Маленькая фишка: цена поверх картинки (опционально) -->
@@ -131,7 +129,7 @@
                 </div>
 
                 <!-- Товар 3 -->
-               <div class="product-card reveal">
+                <div class="product-card reveal">
                     <div class="product-card__image">
                         <img src="Images/IMG_0439.PNG" alt="Методичка">
                         <!-- Маленькая фишка: цена поверх картинки (опционально) -->
@@ -177,7 +175,10 @@
             <div class="modal-body">
                 <!-- Слева: Галерея -->
                 <div class="modal-gallery">
+                    <button class="gallery-nav prev" aria-label="Назад">&#10094;</button>
+                    <button class="gallery-nav next" aria-label="Вперед">&#10095;</button>
                     <div class="gallery-track">
+
                         <!-- Сюда JS будет вставлять картинки -->
                     </div>
                 </div>

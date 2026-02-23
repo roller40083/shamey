@@ -232,8 +232,13 @@ body {
         transform: translateY(-10px);
         box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
 
-        .product-card__image img {
-            transform: scale(1.05);
+        .product-card__image {
+            cursor: pointer;
+
+            &:hover img {
+                transform: scale(1.05); // Картинка плавно увеличивается
+                filter: brightness(0.9); // Чуть притемняем для акцента
+            }
         }
     }
 
@@ -291,7 +296,7 @@ body {
 }
 
 // ==========================================
-// МОДАЛЬНОЕ ОКНО
+// МОДАЛЬНОЕ ОКНО (ПОЛНАЯ ИСПРАВЛЕННАЯ ВЕРСИЯ)
 // ==========================================
 .modal {
     position: fixed;
@@ -342,13 +347,6 @@ body {
         transform: scale(0.9) translateY(30px);
         opacity: 0;
         transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
-
-        @media (max-width: 768px) {
-            flex-direction: column;
-            height: 90vh;
-            overflow-y: auto; // СКРОЛЛ ДЛЯ МОБИЛОК
-            -webkit-overflow-scrolling: touch;
-        }
     }
 
     &-close {
@@ -361,64 +359,83 @@ body {
         background: white;
         border: none;
         cursor: pointer;
-        z-index: 10;
+        z-index: 110; // Выше всех
         font-size: 1.5rem;
         display: flex;
         align-items: center;
         justify-content: center;
         box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        transition: 0.3s;
 
         &:hover {
             color: #ef4444;
             transform: rotate(90deg);
         }
-
-        transition: 0.3s;
     }
 
     &-body {
         display: flex;
         width: 100%;
         height: 100%;
-
-        @media (max-width: 768px) {
-            flex-direction: column;
-            height: auto;
-        }
     }
 
+    // --- ГАЛЕРЕЯ (С ПОДДЕРЖКОЙ АВТО-ШИРИНЫ) ---
     &-gallery {
-        flex: 0 0 auto;
-        width: 450px; // Меняется через JS
-        background: #f1f5f9;
-        position: relative;
-        transition: width 0.6s ease;
+        flex: 0 0 auto; // Позволяет JS (adjustWidth) менять ширину блока
+        width: 450px; // Базовая ширина до отработки JS
+        background: #000;
+        position: relative; // База для стрелок
+        overflow: hidden;
+        transition: width 0.6s cubic-bezier(0.4, 0, 0.2, 1);
 
-        @media (max-width: 768px) {
-            width: 100% !important;
-            height: 300px;
-            flex-shrink: 0;
+        .gallery-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 100;
+            background: rgba(0, 0, 0, 0.4);
+            color: white;
+            border: none;
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
+
+            &:hover {
+                background: rgba(0, 0, 0, 0.8);
+            }
+
+            &.prev {
+                left: 15px;
+            }
+
+            &.next {
+                right: 15px;
+            }
         }
 
         .gallery-track {
             width: 100%;
             height: 100%;
             position: relative;
-        }
 
-        img {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            opacity: 0;
-            transition: 0.8s;
+            img {
+                position: absolute;
+                inset: 0;
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                opacity: 0;
+                transition: opacity 0.8s ease;
 
-            &.active {
-                opacity: 1;
-                z-index: 1;
+                &.active {
+                    opacity: 1;
+                }
             }
         }
     }
@@ -427,11 +444,8 @@ body {
         flex: 1;
         display: flex;
         flex-direction: column;
-        min-width: 0; // Для корректного флекса
-
-        @media (max-width: 768px) {
-            height: auto;
-        }
+        min-width: 0;
+        background: white;
 
         h2 {
             font-size: 2rem;
@@ -446,14 +460,7 @@ body {
         overflow-y: auto;
         padding: 10px 40px 30px;
         color: $color-text-light;
-        line-height: 1.7;
 
-        @media (max-width: 768px) {
-            overflow: visible;
-            padding: 20px;
-        }
-
-        // Кастомный скроллбар (только десктоп)
         &::-webkit-scrollbar {
             width: 5px;
         }
@@ -463,51 +470,10 @@ body {
             border-radius: 10px;
         }
 
-        // Стили текста упражнений
         h3 {
             color: $color-accent;
             margin: 25px 0 10px;
             font-size: 1.3rem;
-        }
-
-        h4 {
-            color: $color-accent;
-            margin: 15px 0 5px;
-            font-size: 1rem;
-            text-transform: uppercase;
-        }
-
-        p {
-            margin-bottom: 15px;
-        }
-
-        ul {
-            margin-bottom: 15px;
-            padding-left: 20px;
-
-            li {
-                margin-bottom: 5px;
-            }
-        }
-
-        .photo-credit {
-            font-size: 0.8rem;
-            font-style: italic;
-            opacity: 0.7;
-            display: block;
-            margin-bottom: 20px;
-        }
-
-        .important-note {
-            background: #f8fafc;
-            padding: 20px;
-            border-radius: 15px;
-            border-left: 4px solid $color-accent;
-            margin: 20px 0;
-
-            h4 {
-                margin-top: 0;
-            }
         }
     }
 
@@ -517,19 +483,69 @@ body {
         display: flex;
         justify-content: space-between;
         align-items: center;
-
-        @media (max-width: 768px) {
-            padding: 20px;
-            position: sticky;
-            bottom: 0;
-            background: white;
-        }
+        background: white;
 
         .price {
             font-size: 1.5rem;
             font-weight: 800;
             color: $color-accent;
         }
+    }
+}
+
+// ==========================================
+// АДАПТИВНОСТЬ ПОД МОБИЛКИ (768px и ниже)
+// ==========================================
+@media (max-width: 768px) {
+    .modal-window {
+        flex-direction: column;
+        height: 100vh;
+        width: 100vw;
+        border-radius: 0;
+        transform: translateY(100%);
+    }
+
+    .modal-body {
+        flex-direction: column;
+    }
+
+    .modal-gallery {
+        width: 100% !important; // На мобиле JS ширину не меняет
+        flex: 0 0 35vh;
+        height: 35vh;
+
+        .gallery-nav {
+            width: 38px;
+            height: 38px;
+
+            &.prev {
+                left: 10px;
+            }
+
+            &.next {
+                right: 10px;
+            }
+        }
+    }
+
+    .modal-info {
+        height: 65vh;
+
+        h2 {
+            font-size: 1.5rem;
+            padding: 20px;
+        }
+    }
+
+    .modal-desc-content {
+        padding: 0 20px 20px;
+    }
+
+    .modal-footer {
+        position: sticky;
+        bottom: 0;
+        padding: 15px 20px;
+        box-shadow: 0 -5px 15px rgba(0, 0, 0, 0.05);
     }
 }
 
@@ -600,6 +616,7 @@ footer {
     }
 
     .product-card__image {
+
         height: 250px; // Чуть ниже картинку товара
     }
 
@@ -610,7 +627,7 @@ footer {
         border-radius: 20px 20px 0 0; // Скругляем только верх (как в модных аппках)
         align-self: flex-end; // Прижимаем к низу
         transform: translateY(100px); // Анимация выезда снизу
-        
+
     }
 
     .modal.active .modal-window {
@@ -653,21 +670,40 @@ footer {
 // ==========================================
 
 @media (max-width: 768px) {
+
     // 1. Шрифты и отступы (чтобы не было гигантским)
-    body { padding-top: 60px; }
-    .hero { padding: 40px 0; min-height: auto; }
-    .hero__text h1 { font-size: 2.2rem; }
-    .section-title { font-size: 1.8rem; margin-bottom: 30px; }
-    
+    body {
+        padding-top: 60px;
+    }
+
+    .hero {
+        padding: 40px 0;
+        min-height: auto;
+    }
+
+    .hero__text h1 {
+        font-size: 2.2rem;
+    }
+
+    .section-title {
+        font-size: 1.8rem;
+        margin-bottom: 30px;
+    }
+
     // 2. Сетка товаров строго в один столбец
-    .products-grid { grid-template-columns: 1fr; }
-    .product-card__image { height: 250px; }
+    .products-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .product-card__image {
+        height: 250px;
+    }
 
     // 3. Исправляем модалку под мобильный экран
     .modal-window {
         flex-direction: column;
         height: 100vh; // На всю высоту телефона
-        width: 100vw;  // На всю ширину
+        width: 100vw; // На всю ширину
         max-width: 100%;
         border-radius: 0; // Убираем скругления
         margin: 0;
@@ -680,15 +716,119 @@ footer {
     }
 
     // Глушим расчеты JS и делаем картинку фиксированной высоты
+    // 1. Основные стили галереи (для всех устройств)
+    // ГАЛЕРЕЯ В МОДАЛКЕ
     .modal-gallery {
-        width: 100% !important; 
-        height: 35vh; 
-        flex: 0 0 35vh;
+        flex: 1;
+        background: #000;
+        position: relative; // ОБЯЗАТЕЛЬНО: чтобы кнопки не улетали вверх страницы
+        overflow: hidden;
+        display: flex;
+        align-items: center;
+
+        // Стили кнопок-стрелок
+        .gallery-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%); // Центрируем по вертикали
+            z-index: 100;
+
+            background: rgba(0, 0, 0, 0.4);
+            color: white;
+            border: none;
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            transition: $transition;
+
+            &:hover {
+                background: rgba(0, 0, 0, 0.8);
+                transform: translateY(-50%) scale(1.1);
+            }
+
+            &.prev {
+                left: 15px;
+            }
+
+            &.next {
+                right: 15px;
+            }
+        }
+
+        .gallery-track {
+            width: 100%;
+            height: 100%;
+            position: relative;
+
+            img {
+                position: absolute;
+                inset: 0;
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                opacity: 0;
+                transition: opacity 0.8s ease;
+
+                &.active {
+                    opacity: 1;
+                }
+            }
+        }
+
+        // Адаптив под мобилки (экраны до 768px)
+        @media (max-width: 768px) {
+            width: 100% !important;
+            height: 35vh;
+            flex: 0 0 35vh;
+
+            .gallery-nav {
+                width: 35px;
+                height: 35px;
+                background: rgba(0, 0, 0, 0.5);
+
+                &.prev {
+                    left: 10px;
+                }
+
+                &.next {
+                    right: 10px;
+                }
+            }
+        }
+    }
+
+    // 2. Адаптив под мобилки
+    @media (max-width: 768px) {
+        .modal-gallery {
+            width: 100% !important;
+            height: 35vh;
+            flex: 0 0 35vh;
+
+            .gallery-nav {
+                width: 35px;
+                height: 35px;
+                background: rgba(0, 0, 0, 0.5);
+                font-size: 1rem;
+
+                &.prev {
+                    left: 10px;
+                }
+
+                &.next {
+                    right: 10px;
+                }
+            }
+        }
     }
 
     // Настраиваем текстовую часть
     .modal-info {
-        height: 65vh; 
+        height: 65vh;
         padding: 0;
         display: flex;
         flex-direction: column;
@@ -711,14 +851,20 @@ footer {
         bottom: 0;
         background: white;
         padding: 15px 20px;
-        box-shadow: 0 -5px 15px rgba(0,0,0,0.05);
+        box-shadow: 0 -5px 15px rgba(0, 0, 0, 0.05);
         z-index: 10;
     }
 }
 
 // Для совсем узких экранов (старые айфоны)
 @media (max-width: 480px) {
-    .hero__text h1 { font-size: 1.8rem; }
+    .hero__text h1 {
+        font-size: 1.8rem;
+    }
+
     // Кнопки в карточке товара встанут одна под другой
-    .product-card__actions { grid-template-columns: 1fr; gap: 10px; }
+    .product-card__actions {
+        grid-template-columns: 1fr;
+        gap: 10px;
+    }
 }

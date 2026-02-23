@@ -1,41 +1,31 @@
 document.addEventListener('DOMContentLoaded', () => {
 
-    // 1. Анимация появления при скролле
+    // --- 1. АНИМАЦИЯ ПОЯВЛЕНИЯ ПРИ СКРОЛЛЕ ---
     const revealElements = document.querySelectorAll('.reveal');
-
     const revealOnScroll = () => {
         const windowHeight = window.innerHeight;
-        const elementVisible = 100; // Отступ снизу, когда элемент начинает появляться
-
+        const elementVisible = 100;
         revealElements.forEach((element) => {
             const elementTop = element.getBoundingClientRect().top;
-
             if (elementTop < windowHeight - elementVisible) {
                 element.classList.add('active');
             }
         });
     };
-
-    // Запускаем при загрузке и при скролле
     window.addEventListener('scroll', revealOnScroll);
-    revealOnScroll(); // Чтобы верхние элементы появились сразу
+    revealOnScroll();
 
-    
-// 2. Логика для всех кнопок "Купить" (и в карточках, и в модалке)
-const buyButtons = document.querySelectorAll('.buy-btn, .modal-footer .btn--primary');
-
-buyButtons.forEach(btn => {
-    btn.addEventListener('click', (e) => {
-        e.preventDefault(); // Отменяем стандартное поведение
-        e.stopPropagation(); // Чтобы клик не проваливался в открытие модалки
-        
-        // Переход в телеграм
-        window.open('https://t.me/shameychat_bot', '_blank');
+    // --- 2. ЛОГИКА КНОПОК "КУПИТЬ" (ТЕЛЕГРАМ) ---
+    const buyButtons = document.querySelectorAll('.buy-btn, .modal-footer .btn--primary');
+    buyButtons.forEach(btn => {
+        btn.addEventListener('click', (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            window.open('https://t.me/shameychat_bot', '_blank');
+        });
     });
-});
-});
 
-document.addEventListener('DOMContentLoaded', () => {
+    // --- 3. РАБОТА С МОДАЛЬНЫМ ОКНОМ ---
     const modal = document.getElementById('product-modal');
     if (!modal) return;
 
@@ -43,82 +33,105 @@ document.addEventListener('DOMContentLoaded', () => {
     const galleryTrack = modal.querySelector('.gallery-track');
     const descContainer = document.getElementById('modal-desc');
     const modalWindow = modal.querySelector('.modal-window');
-    
     let sliderInterval;
 
-    // 1. Функция расчета ширины
+    // Расчет ширины под картинку
     const adjustWidth = () => {
         const activeImg = galleryTrack.querySelector('img.active');
         if (!activeImg || window.innerWidth <= 768) {
             galleryContainer.style.width = "";
             return;
         }
-
         const calculate = () => {
             const ratio = activeImg.naturalWidth / activeImg.naturalHeight;
             const containerHeight = modalWindow.offsetHeight;
             let targetWidth = containerHeight * ratio;
-
-            // Лимиты
             const maxWidth = modalWindow.offsetWidth * 0.65;
             if (targetWidth > maxWidth) targetWidth = maxWidth;
             if (targetWidth < 380) targetWidth = 380;
-
             galleryContainer.style.width = `${targetWidth}px`;
         };
-
         if (activeImg.complete) calculate();
         else activeImg.onload = calculate;
     };
 
-    // 2. Открытие
-    document.querySelectorAll('.open-modal-btn').forEach(btn => {
-        btn.addEventListener('click', (e) => {
-            e.preventDefault();
+    // ГЛАВНАЯ ФУНКЦИЯ ОТКРЫТИЯ (теперь вызывается отовсюду)
+    const openProductModal = (btn) => {
+        // Заполняем текст
+        document.getElementById('modal-title').textContent = btn.dataset.title;
+        document.getElementById('modal-price').textContent = btn.dataset.price;
+        descContainer.innerHTML = btn.dataset.desc;
+        descContainer.scrollTop = 0;
 
-            // Заполняем текст
-            document.getElementById('modal-title').textContent = btn.dataset.title;
-            document.getElementById('modal-price').textContent = btn.dataset.price;
-            descContainer.innerHTML = btn.dataset.desc;
-            descContainer.scrollTop = 0; // Скролл в начало
+        // Рендерим картинки
+        const images = JSON.parse(btn.dataset.images || '[]');
+        galleryTrack.innerHTML = '';
+        images.forEach((src, idx) => {
+            const img = document.createElement('img');
+            img.src = src;
+            if (idx === 0) img.classList.add('active');
+            galleryTrack.appendChild(img);
+        });
 
-            // Рендерим картинки
-            const images = JSON.parse(btn.dataset.images || '[]');
-            galleryTrack.innerHTML = '';
-            images.forEach((src, idx) => {
-                const img = document.createElement('img');
-                img.src = src;
-                if (idx === 0) img.classList.add('active');
-                galleryTrack.appendChild(img);
+        // Показываем
+        modal.classList.add('active');
+        document.body.style.overflow = 'hidden';
+
+        setTimeout(adjustWidth, 50);
+        startSlider();
+    };
+
+    // Находим все карточки и вешаем клики
+    const cards = document.querySelectorAll('.product-card');
+    cards.forEach(card => {
+        const openBtn = card.querySelector('.open-modal-btn');
+        const cardImg = card.querySelector('.product-card__image');
+
+        if (openBtn) {
+            // Клик по кнопке "Подробнее"
+            openBtn.addEventListener('click', (e) => {
+                e.preventDefault();
+                openProductModal(openBtn);
             });
 
-            // Показываем
-            modal.classList.add('active');
-            document.body.style.overflow = 'hidden';
-
-            // Настраиваем ширину и запускаем слайдер
-            setTimeout(adjustWidth, 50);
-            startSlider();
-        });
+            // ВОТ ОНО: Клик по самой картинке в карточке
+            if (cardImg) {
+                cardImg.addEventListener('click', () => {
+                    openProductModal(openBtn); // Используем данные из кнопки этой же карточки
+                });
+            }
+        }
     });
 
-    // 3. Слайдер
-    function startSlider() {
-        clearInterval(sliderInterval);
-        sliderInterval = setInterval(() => {
-            const imgs = galleryTrack.querySelectorAll('img');
-            if (imgs.length < 2) return;
-
-            let idx = Array.from(imgs).findIndex(i => i.classList.contains('active'));
-            imgs[idx].classList.remove('active');
-            let next = (idx + 1) % imgs.length;
-            imgs[next].classList.add('active');
-
-            adjustWidth(); // Подстраиваем ширину под новый слайд
-        }, 4000);
+    // --- 4. СЛАЙДЕР ВНУТРИ МОДАЛКИ ---
+    function changeSlide(direction = 'next') {
+        const imgs = galleryTrack.querySelectorAll('img');
+        if (imgs.length < 2) return;
+        let idx = Array.from(imgs).findIndex(i => i.classList.contains('active'));
+        imgs[idx].classList.remove('active');
+        let nextIdx = direction === 'next' ? (idx + 1) % imgs.length : (idx - 1 + imgs.length) % imgs.length;
+        imgs[nextIdx].classList.add('active');
+        adjustWidth();
     }
 
-    // 4. Закрытие
+    function startSlider() {
+        clearInterval(sliderInterval);
+        sliderInterval = setInterval(() => changeSlide('next'), 4000);
+    }
+
+    modal.querySelector('.gallery-nav.next').addEventListener('click', (e) => {
+        e.stopPropagation();
+        changeSlide('next');
+        startSlider();
+    });
+
+    modal.querySelector('.gallery-nav.prev').addEventListener('click', (e) => {
+        e.stopPropagation();
+        changeSlide('prev');
+        startSlider();
+    });
+
+    // --- 5. ЗАКРЫТИЕ ---
     const closeModal = () => {
         modal.classList.remove('active');
         document.body.style.overflow = '';
@@ -127,6 +140,5 @@ document.addEventListener('DOMContentLoaded', () => {
 
     modal.querySelector('.modal-close').addEventListener('click', closeModal);
     modal.querySelector('.modal-overlay').addEventListener('click', closeModal);
-    window.addEventListener('keydown', (e) => { if(e.key === 'Escape') closeModal(); });
+    window.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeModal(); });
 });
-
