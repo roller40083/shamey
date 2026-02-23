@@ -502,19 +502,21 @@ body {
         }
     }
 
-    &-footer {
-        padding: 25px 40px;
-        border-top: 1px solid #f1f5f9;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        background: white;
 
-        .price {
-            font-size: 1.5rem;
-            font-weight: 800;
-            color: $color-accent;
-        }
+}
+
+footer {
+    padding: 25px 40px;
+    border-top: 1px solid #f1f5f9;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: white;
+
+    .price {
+        font-size: 1.5rem;
+        font-weight: 800;
+        color: $color-accent;
     }
 }
 
@@ -625,6 +627,11 @@ body.dark-theme {
     background-color: $color-gray-bg;
     color: $color-gray-text;
 
+    footer {
+        background: #121212;
+        border-color: #242424;
+    }
+
     .hero__text p {
         color: $color-gray-text;
     }
@@ -706,7 +713,8 @@ body.dark-theme {
             color: #fff;
 
             &:hover {
-                border-color: #fff;
+                background-color: #000;
+                border-color: #565656;
             }
         }
     }
@@ -762,7 +770,7 @@ body.dark-theme {
         }
 
         .badge {
-            background: #2d2d2d;
+            
         }
     }
 }

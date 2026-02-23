@@ -430,7 +430,8 @@ body {
   border-radius: 8px;
   color: #1e293b;
 }
-.modal-footer {
+
+footer {
   padding: 25px 40px;
   border-top: 1px solid #f1f5f9;
   display: flex;
@@ -438,7 +439,7 @@ body {
   align-items: center;
   background: white;
 }
-.modal-footer .price {
+footer .price {
   font-size: 1.5rem;
   font-weight: 800;
   color: #0f172a;
@@ -539,6 +540,10 @@ body.dark-theme {
   background-color: #121212;
   color: #e2e8f0;
 }
+body.dark-theme footer {
+  background: #121212;
+  border-color: #242424;
+}
 body.dark-theme .hero__text p {
   color: #e2e8f0;
 }
@@ -603,7 +608,8 @@ body.dark-theme .product-card .btn--outline {
   color: #fff;
 }
 body.dark-theme .product-card .btn--outline:hover {
-  border-color: #fff;
+  background-color: #000;
+  border-color: #565656;
 }
 body.dark-theme .modal-window {
   background: #121212;
@@ -646,10 +652,6 @@ body.dark-theme .mobile-menu__content .mobile-menu__link,
 body.dark-theme .mobile-menu__content .mobile-menu__close {
   color: #fff;
 }
-body.dark-theme .mobile-menu__content .badge {
-  background: #2d2d2d;
-}
-
 @media (max-width: 768px) {
   body {
     padding-top: 60px;
