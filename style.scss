@@ -1,22 +1,17 @@
-// ==========================================
-// ПЕРЕМЕННЫЕ
-// ==========================================
 $font-main: 'Inter', sans-serif;
 $color-bg: #ffffff;
 $color-text: #1e293b;
-$color-text-light: #64748b;
+$color-text-light: #0b182b;
 $color-accent: #0f172a;
 $color-accent-hover: #334155;
-$color-gray-bg: #121212;      // Основной фон (очень темный серый)
-$color-gray-card: #1e1e1e;    // Карточки (чуть светлее)
-$color-gray-border: #2d2d2d;  // Границы
-$color-gray-text: #e2e8f0;    // Основной текст
+$color-gray-bg: #121212;
+$color-gray-card: #1e1e1e;
+$color-gray-border: #2d2d2d;
+$color-gray-text: #e2e8f0;
 $border-radius: 20px;
 $transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 
-// ==========================================
 // БАЗОВЫЕ СТИЛИ
-// ==========================================
 * {
     box-sizing: border-box;
     margin: 0;
@@ -30,7 +25,7 @@ body {
     color: $color-text;
     line-height: 1.6;
     overflow-x: hidden;
-    padding-top: 80px; // Отступ под фикс. шапку
+    padding-top: 80px;
 }
 
 .container {
@@ -39,9 +34,7 @@ body {
     padding: 0 20px;
 }
 
-// ==========================================
 // КНОПКИ
-// ==========================================
 .btn {
     display: inline-flex;
     align-items: center;
@@ -79,9 +72,7 @@ body {
     }
 }
 
-// ==========================================
 // НАВИГАЦИЯ
-// ==========================================
 .stylish-nav {
     position: fixed;
     top: 0;
@@ -118,8 +109,8 @@ body {
     }
 
     .menu-box {
-        display:flex;
-        gap:15px;
+        display: flex;
+        gap: 15px;
     }
 
     .menu-icon {
@@ -162,9 +153,7 @@ body {
     }
 }
 
-// ==========================================
 // HERO СЕКЦИЯ
-// ==========================================
 .hero {
     padding: 80px 0;
     min-height: 80vh;
@@ -206,9 +195,7 @@ body {
     }
 }
 
-// ==========================================
-// КАРТОЧКИ ТОВАРОВ
-// ==========================================
+// МАГАЗИН И КАРТОЧКИ
 .shop {
     padding: 80px 0;
     background: #f8fafc;
@@ -241,17 +228,14 @@ body {
         transform: translateY(-10px);
         box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
 
-        .product-card__image {
-            cursor: pointer;
-
-            &:hover img {
-                transform: scale(1.05); // Картинка плавно увеличивается
-                filter: brightness(0.9); // Чуть притемняем для акцента
-            }
+        .product-card__image img {
+            transform: scale(1.05);
+            filter: brightness(0.9);
         }
     }
 
     &__image {
+        cursor: pointer;
         height: 320px;
         overflow: hidden;
         position: relative;
@@ -304,9 +288,7 @@ body {
     }
 }
 
-// ==========================================
-// МОДАЛЬНОЕ ОКНО (ПОЛНАЯ ИСПРАВЛЕННАЯ ВЕРСИЯ)
-// ==========================================
+// МОДАЛЬНОЕ ОКНО
 .modal {
     position: fixed;
     top: 0;
@@ -368,7 +350,7 @@ body {
         background: white;
         border: none;
         cursor: pointer;
-        z-index: 110; // Выше всех
+        z-index: 110;
         font-size: 1.5rem;
         display: flex;
         align-items: center;
@@ -388,12 +370,11 @@ body {
         height: 100%;
     }
 
-    // --- ГАЛЕРЕЯ (С ПОДДЕРЖКОЙ АВТО-ШИРИНЫ) ---
     &-gallery {
-        flex: 0 0 auto; // Позволяет JS (adjustWidth) менять ширину блока
-        width: 450px; // Базовая ширина до отработки JS
+        flex: 0 0 auto;
+        width: 450px;
         background: #000;
-        position: relative; // База для стрелок
+        position: relative;
         overflow: hidden;
         transition: width 0.6s cubic-bezier(0.4, 0, 0.2, 1);
 
@@ -412,12 +393,7 @@ body {
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 1.2rem;
-            transition: all 0.3s ease;
-
-            &:hover {
-                background: rgba(0, 0, 0, 0.8);
-            }
+            transition: 0.3s;
 
             &.prev {
                 left: 15px;
@@ -426,25 +402,23 @@ body {
             &.next {
                 right: 15px;
             }
+
+            &:hover {
+                background: rgba(0, 0, 0, 0.8);
+            }
         }
 
-        .gallery-track {
+        .gallery-track img {
+            position: absolute;
+            inset: 0;
             width: 100%;
             height: 100%;
-            position: relative;
+            object-fit: cover;
+            opacity: 0;
+            transition: opacity 0.8s ease;
 
-            img {
-                position: absolute;
-                inset: 0;
-                width: 100%;
-                height: 100%;
-                object-fit: cover;
-                opacity: 0;
-                transition: opacity 0.8s ease;
-
-                &.active {
-                    opacity: 1;
-                }
+            &.active {
+                opacity: 1;
             }
         }
     }
@@ -475,14 +449,56 @@ body {
         }
 
         &::-webkit-scrollbar-thumb {
-            background: #e2e8f0;
+            background: #e2e8e0;
             border-radius: 10px;
         }
 
         h3 {
             color: $color-accent;
             margin: 25px 0 10px;
-            font-size: 1.3rem;
+            font-size: 1.4rem;
+            font-weight: 800;
+        }
+
+        h4 {
+            color: $color-accent;
+            margin-top: 15px;
+            font-weight: 700;
+        }
+
+        p {
+            margin-bottom: 15px;
+            line-height: 1.7;
+        }
+
+        ul,
+        ol {
+            padding-left: 20px;
+            margin: 15px 0;
+
+            li {
+                margin-bottom: 8px;
+
+                &::marker {
+                    color: $color-accent;
+                    font-weight: bold;
+                }
+            }
+        }
+
+        strong,
+        b {
+            color: $color-accent;
+            font-weight: 800;
+        }
+
+        .important-note {
+            background: #f8fafc;
+            border-left: 4px solid $color-accent;
+            padding: 16px;
+            margin: 20px 0;
+            border-radius: 8px;
+            color: $color-text;
         }
     }
 
@@ -502,382 +518,7 @@ body {
     }
 }
 
-// ==========================================
-// АДАПТИВНОСТЬ ПОД МОБИЛКИ (768px и ниже)
-// ==========================================
-@media (max-width: 768px) {
-    .modal-window {
-        flex-direction: column;
-        height: 100vh;
-        width: 100vw;
-        border-radius: 0;
-        transform: translateY(100%);
-    }
-
-    .modal-body {
-        flex-direction: column;
-    }
-
-    .modal-gallery {
-        width: 100% !important; // На мобиле JS ширину не меняет
-        flex: 0 0 35vh;
-        height: 35vh;
-
-        .gallery-nav {
-            width: 38px;
-            height: 38px;
-
-            &.prev {
-                left: 10px;
-            }
-
-            &.next {
-                right: 10px;
-            }
-        }
-    }
-
-    .modal-info {
-        height: 65vh;
-
-        h2 {
-            font-size: 1.5rem;
-            padding: 20px;
-        }
-    }
-
-    .modal-desc-content {
-        padding: 0 20px 20px;
-    }
-
-    .modal-footer {
-        position: sticky;
-        bottom: 0;
-        padding: 15px 20px;
-        box-shadow: 0 -5px 15px rgba(0, 0, 0, 0.05);
-    }
-}
-
-// ==========================================
-// АНИМАЦИИ ПОЯВЛЕНИЯ
-// ==========================================
-.reveal {
-    opacity: 0;
-    transform: translateY(30px);
-    transition: 0.8s ease-out;
-
-    &.active {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-.delay-100 {
-    transition-delay: 0.1s;
-}
-
-.delay-200 {
-    transition-delay: 0.2s;
-}
-
-footer {
-    padding: 40px 0;
-    text-align: center;
-    color: $color-text-light;
-    border-top: 1px solid #f1f5f9;
-}
-
-// ==========================================
-// АДАПТИВНОСТЬ (MOBILE FIRST / TABLET)
-// ==========================================
-
-@media (max-width: 768px) {
-    body {
-        padding-top: 60px; // Уменьшаем отступ шапки
-    }
-
-    // 1. Шрифты и заголовки
-    .hero__text h1 {
-        font-size: 2.2rem; // Было 3.5rem - слишком много для мобилки
-        line-height: 1.2;
-    }
-
-    .section-title {
-        font-size: 1.8rem;
-        margin-bottom: 30px;
-    }
-
-    // 2. Секция Hero
-    .hero {
-        padding: 40px 0;
-        min-height: auto; // Убираем 80vh, чтобы не было дырок
-    }
-
-    .hero__image img {
-        max-width: 280px; // Уменьшаем фото Давида, чтобы влезло
-        box-shadow: 15px 15px 0px rgba($color-accent, 0.05); // Уменьшаем тень
-    }
-
-    // 3. Сетка товаров
-    .products-grid {
-        grid-template-columns: 1fr; // Строго в одну колонку
-        gap: 20px;
-    }
-
-    .product-card__image {
-
-        height: 250px; // Чуть ниже картинку товара
-    }
-
-    // 4. Модальное окно (Исправляем высоту)
-    .modal-window {
-        height: 95vh; // Почти на весь экран
-        width: 100%;
-        border-radius: 20px 20px 0 0; // Скругляем только верх (как в модных аппках)
-        align-self: flex-end; // Прижимаем к низу
-        transform: translateY(100px); // Анимация выезда снизу
-
-    }
-
-    .modal.active .modal-window {
-        transform: translateY(0);
-    }
-
-    .modal-info h2 {
-        font-size: 1.5rem;
-        padding: 20px 20px 10px;
-    }
-
-    .modal-footer {
-        flex-direction: row; // Оставляем в ряд цену и кнопку
-        padding: 15px 20px;
-
-        .price {
-            font-size: 1.2rem;
-        }
-
-        .btn {
-            padding: 10px 16px;
-            font-size: 0.8rem;
-        }
-    }
-}
-
-// Совсем маленькие экраны (iPhone SE и т.д.)
-@media (max-width: 480px) {
-    .hero__text h1 {
-        font-size: 1.8rem;
-    }
-
-    .product-card__actions {
-        grid-template-columns: 1fr; // Кнопки в карточке одна под другой
-    }
-}
-
-// ==========================================
-// АДАПТИВНОСТЬ (ТОЛЬКО ДЛЯ МОБИЛОК)
-// ==========================================
-
-@media (max-width: 768px) {
-
-    // 1. Шрифты и отступы (чтобы не было гигантским)
-    body {
-        padding-top: 60px;
-    }
-
-    .hero {
-        padding: 40px 0;
-        min-height: auto;
-    }
-
-    .hero__text h1 {
-        font-size: 2.2rem;
-    }
-
-    .section-title {
-        font-size: 1.8rem;
-        margin-bottom: 30px;
-    }
-
-    // 2. Сетка товаров строго в один столбец
-    .products-grid {
-        grid-template-columns: 1fr;
-    }
-
-    .product-card__image {
-        height: 250px;
-    }
-
-    // 3. Исправляем модалку под мобильный экран
-    .modal-window {
-        flex-direction: column;
-        height: 100vh; // На всю высоту телефона
-        width: 100vw; // На всю ширину
-        max-width: 100%;
-        border-radius: 0; // Убираем скругления
-        margin: 0;
-        transform: translateY(100%); // Выезжает снизу
-    }
-
-    .modal-body {
-        flex-direction: column;
-        height: 100%;
-    }
-
-    // Глушим расчеты JS и делаем картинку фиксированной высоты
-    // 1. Основные стили галереи (для всех устройств)
-    // ГАЛЕРЕЯ В МОДАЛКЕ
-    .modal-gallery {
-        flex: 1;
-        background: #000;
-        position: relative; // ОБЯЗАТЕЛЬНО: чтобы кнопки не улетали вверх страницы
-        overflow: hidden;
-        display: flex;
-        align-items: center;
-
-        // Стили кнопок-стрелок
-        .gallery-nav {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%); // Центрируем по вертикали
-            z-index: 100;
-
-            background: rgba(0, 0, 0, 0.4);
-            color: white;
-            border: none;
-            width: 45px;
-            height: 45px;
-            border-radius: 50%;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.2rem;
-            transition: $transition;
-
-            &:hover {
-                background: rgba(0, 0, 0, 0.8);
-                transform: translateY(-50%) scale(1.1);
-            }
-
-            &.prev {
-                left: 15px;
-            }
-
-            &.next {
-                right: 15px;
-            }
-        }
-
-        .gallery-track {
-            width: 100%;
-            height: 100%;
-            position: relative;
-
-            img {
-                position: absolute;
-                inset: 0;
-                width: 100%;
-                height: 100%;
-                object-fit: cover;
-                opacity: 0;
-                transition: opacity 0.8s ease;
-
-                &.active {
-                    opacity: 1;
-                }
-            }
-        }
-
-        // Адаптив под мобилки (экраны до 768px)
-        @media (max-width: 768px) {
-            width: 100% !important;
-            height: 35vh;
-            flex: 0 0 35vh;
-
-            .gallery-nav {
-                width: 35px;
-                height: 35px;
-                background: rgba(0, 0, 0, 0.5);
-
-                &.prev {
-                    left: 10px;
-                }
-
-                &.next {
-                    right: 10px;
-                }
-            }
-        }
-    }
-
-    // 2. Адаптив под мобилки
-    @media (max-width: 768px) {
-        .modal-gallery {
-            width: 100% !important;
-            height: 35vh;
-            flex: 0 0 35vh;
-
-            .gallery-nav {
-                width: 35px;
-                height: 35px;
-                background: rgba(0, 0, 0, 0.5);
-                font-size: 1rem;
-
-                &.prev {
-                    left: 10px;
-                }
-
-                &.next {
-                    right: 10px;
-                }
-            }
-        }
-    }
-
-    // Настраиваем текстовую часть
-    .modal-info {
-        height: 65vh;
-        padding: 0;
-        display: flex;
-        flex-direction: column;
-    }
-
-    .modal-info h2 {
-        font-size: 1.5rem;
-        padding: 20px 20px 10px;
-    }
-
-    .modal-desc-content {
-        padding: 0 20px 20px;
-        flex: 1;
-        overflow-y: auto; // Разрешаем тексту скроллиться
-    }
-
-    // Прибиваем кнопку "Купить" к низу экрана смартфона
-    .modal-footer {
-        position: sticky;
-        bottom: 0;
-        background: white;
-        padding: 15px 20px;
-        box-shadow: 0 -5px 15px rgba(0, 0, 0, 0.05);
-        z-index: 10;
-    }
-}
-
-// Для совсем узких экранов (старые айфоны)
-@media (max-width: 480px) {
-    .hero__text h1 {
-        font-size: 1.8rem;
-    }
-
-    // Кнопки в карточке товара встанут одна под другой
-    .product-card__actions {
-        grid-template-columns: 1fr;
-        gap: 10px;
-    }
-}
-
+// МОБИЛЬНОЕ МЕНЮ
 .mobile-menu {
     position: fixed;
     inset: 0;
@@ -930,7 +571,6 @@ footer {
         font-size: 2.5rem;
         cursor: pointer;
         margin-bottom: 40px;
-        line-height: 1;
     }
 
     &__nav {
@@ -944,35 +584,21 @@ footer {
         font-size: 1.2rem;
         font-weight: 700;
         color: $color-accent;
-        transition: 0.3s;
-
-        &.disabled {
-            opacity: 0.5;
-            pointer-events: none;
-        }
     }
 
-    &__dev {
-        display: flex;
-        flex-direction: column;
-        gap: 5px;
-
-        .badge {
-            font-size: 0.6rem;
-            text-transform: uppercase;
-            background: #f1f5f9;
-            color: $color-text-light;
-            padding: 2px 8px;
-            border-radius: 4px;
-            width: fit-content;
-            font-weight: 800;
-        }
+    .badge {
+        font-size: 0.6rem;
+        text-transform: uppercase;
+        background: #f1f5f9;
+        color: $color-text-light;
+        padding: 2px 8px;
+        border-radius: 4px;
+        width: fit-content;
+        font-weight: 800;
     }
 }
 
-// ==========================================
-// ИСПРАВЛЕННЫЙ ПЕРЕКЛЮЧАТЕЛЬ ТЕМЫ
-// ==========================================
+// ТЕМНАЯ ТЕМА (DARK MODE)
 .theme-toggle {
     background: #f1f5f9;
     border: none;
@@ -985,137 +611,285 @@ footer {
     justify-content: center;
     font-size: 1.3rem;
     transition: $transition;
-    position: relative;
 
-    // Скрываем луну по умолчанию (в светлой теме)
-    .moon { display: none; }
-    .sun { display: block; }
+    .moon {
+        display: none;
+    }
 
     &:hover {
         background: #e2e8f0;
-        transform: scale(1.05);
     }
 }
 
-// ГЛОБАЛЬНЫЕ ТЕМНЫЕ ЦВЕТА
 body.dark-theme {
     background-color: $color-gray-bg;
     color: $color-gray-text;
 
-    // ЛОГИКА СМЕНЫ ИКОНОК
+    .hero__text p {
+        color: $color-gray-text;
+    }
+
+    .modal-info h2 {
+        color: #fff;
+    }
+
     .theme-toggle {
         background: #2d2d2d;
-        
-        .sun { display: none; }  // Прячем солнце в темной теме
-        .moon { display: block; } // Показываем луну в темной теме
-        
-        &:hover {
-            background: #3d3d3d;
+
+        .sun {
+            display: none;
+        }
+
+        .moon {
+            display: block;
+            color: #fff;
         }
     }
 
-    // Остальные стили (ШАПКА, КАРТОЧКИ и т.д. остаются без изменений)
     .stylish-nav {
         background: rgba(18, 18, 18, 0.8);
         border-bottom: 1px solid $color-gray-border;
-        // ... (твой остальной код)
+
+        .logo-box .name-filled {
+            color: #fff;
+        }
+
+        .logo-box .name-outlined {
+            -webkit-text-stroke: 1px #fff;
+        }
+
+        .menu-text {
+            background: #000000;
+            color: #ffffff;
+        }
+
+        .hamburger span {
+            background: #ffffff;
+            color: #ffffff;
+        }
+
     }
-    // ...
-}
 
-// ГЛОБАЛЬНЫЕ ТЕМНЫЕ ЦВЕТА
-body.dark-theme {
-    background-color: $color-gray-bg;
-    color: $color-gray-text;
-
-    // ШАПКА
-    .stylish-nav {
-        background: rgba(18, 18, 18, 0.8);
-        border-bottom: 1px solid $color-gray-border;
-        .logo-box .name-filled { color: #fff; }
-        .logo-box .name-outlined { -webkit-text-stroke: 1px #fff; }
-        .menu-text { color: #fff; }
-        .hamburger span { background: #fff; }
+    .shop {
+        background-color: #181818;
     }
 
-    // СЕКЦИЯ МАГАЗИНА
-    .shop { background-color: #181818; }
-    .section-title { color: #fff; }
+    .section-title {
+        color: #fff;
+    }
 
-    // КАРТОЧКИ
     .product-card {
         background: $color-gray-card;
-        border: 1px solid $color-gray-border;
-        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        border-color: $color-gray-border;
 
-        h3 { color: #fff; }
-        .description { color: #94a3b8; }
-
-        // КНОПКИ В КАРТОЧКЕ
-        .btn--primary { // Кнопка "Купить"
-            background-color: #fff;
-            color: #000;
-            &:hover {
-                background-color: #e2e8f0;
-                box-shadow: 0 5px 15px rgba(255, 255, 255, 0.1);
-            }
-        }
-
-        .btn--outline { // Кнопка "Подробнее"
-            border-color: #475569;
+        h3 {
             color: #fff;
-            &:hover {
-                background-color: rgba(255, 255, 255, 0.05);
-                border-color: #fff;
-            }
         }
-        
+
+        .description {
+            color: #94a3b8;
+        }
+
         .card-price-badge {
             background: #2d2d2d;
             color: #fff;
             border: 1px solid #475569;
         }
+
+        .btn--primary {
+            background: #fff;
+            color: #000;
+        }
+
+        .btn--outline {
+            border-color: #475569;
+            color: #fff;
+
+            &:hover {
+                border-color: #fff;
+            }
+        }
     }
 
-    // МОДАЛЬНОЕ ОКНО
     .modal-window {
         background: $color-gray-bg;
         border: 1px solid $color-gray-border;
 
-        .modal-info { background: $color-gray-bg; }
-        .modal-title { color: #fff; }
-        .modal-desc-content { 
-            color: #cbd5e1;
-            h3, h4 { color: #fff; }
-            .important-note { 
-                background: #1e1e1e; 
-                border-left-color: #fff; 
-                color: #fff;
-            }
-        }
-        
+        .modal-info,
         .modal-footer {
-            background: #181818;
-            border-top: 1px solid $color-gray-border;
-            .price { color: #fff; }
-            
-            .btn--primary { // Кнопка "Купить" в модалке
-                background-color: #fff;
-                color: #000;
-            }
+            background: $color-gray-bg;
+        }
+
+        .modal-footer {
+            border-top-color: $color-gray-border;
+        }
+
+        .modal-title,
+        .modal-footer .price {
+            color: #fff;
         }
 
         .modal-close {
             background: #2d2d2d;
             color: #fff;
         }
+
+        .modal-desc-content {
+            color: #cbd5e1;
+
+            h3,
+            h4,
+            strong,
+            b,
+            ul li::marker {
+                color: #fff;
+            }
+
+            .important-note {
+                background: #1e1e1e;
+                border-left-color: #fff;
+                color: #fff;
+            }
+        }
     }
 
-    // МЕНЮ
     .mobile-menu__content {
         background: $color-gray-bg;
-        .mobile-menu__link { color: #fff; }
-        .mobile-menu__close { color: #fff; }
-        .badge { background: #2d2d2d; color: #94a3b8; }
+
+        .mobile-menu__link,
+        .mobile-menu__close {
+            color: #fff;
+        }
+
+        .badge {
+            background: #2d2d2d;
+        }
+    }
+}
+
+// АДАПТИВНОСТЬ
+// ==========================================
+// АДАПТИВНОСТЬ (ЕДИНЫЙ БЛОК)
+// ==========================================
+@media (max-width: 768px) {
+    body {
+        padding-top: 60px;
+    }
+
+    // --- HERO И СЕТКА ---
+    .hero {
+        padding: 40px 0;
+        min-height: auto;
+
+        &__text h1 {
+            font-size: 2.2rem;
+            line-height: 1.2;
+        }
+
+        &__image img {
+            max-width: 280px;
+            box-shadow: 15px 15px 0px rgba($color-accent, 0.05);
+        }
+    }
+
+    .section-title {
+        font-size: 1.8rem;
+        margin-bottom: 30px;
+    }
+
+    .products-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+
+    .product-card__image {
+        height: 250px;
+    }
+
+    // --- МОДАЛЬНОЕ ОКНО ---
+    .modal-window {
+        flex-direction: column;
+        height: 100vh; // Выезжает не на весь экран, а красиво снизу
+        width: 100%;
+        border-radius: 20px 20px 0 0;
+        align-self: flex-end;
+        transform: translateY(100%);
+        margin: 0;
+    }
+
+    .modal-body {
+        flex-direction: column;
+        height: 100%;
+        display: flex;
+    }
+
+    .modal-gallery {
+        width: 100% !important;
+        flex: 0 0 35vh; // Галерея строго 35% от экрана
+        height: 35vh;
+
+        .gallery-nav {
+            width: 38px;
+            height: 38px;
+            background: rgba(0, 0, 0, 0.5);
+
+            &.prev {
+                left: 10px;
+            }
+
+            &.next {
+                right: 10px;
+            }
+        }
+    }
+
+    .modal-info {
+        flex: 1; // Занимает все оставшееся место (65%)
+        display: flex;
+        flex-direction: column;
+        padding: 0;
+        overflow: hidden; // Блокируем скролл самого контейнера
+
+        h2 {
+            font-size: 1.5rem;
+            padding: 20px 20px 10px;
+            margin: 0;
+        }
+    }
+
+    .modal-desc-content {
+        padding: 0 20px 20px;
+        flex: 1; // Текст занимает пространство между заголовком и футером
+        overflow-y: auto; // СКРОЛЛ ТУТ
+        -webkit-overflow-scrolling: touch; // Плавный скролл для айфонов
+    }
+
+    .modal-footer {
+        flex-direction: row;
+        padding: 15px 20px;
+        background: white;
+        box-shadow: 0 -5px 15px rgba(0, 0, 0, 0.05);
+        z-index: 10;
+
+        .price {
+            font-size: 1.2rem;
+        }
+
+        .btn {
+            padding: 10px 16px;
+            font-size: 0.8rem;
+        }
+    }
+}
+
+// Совсем маленькие экраны
+@media (max-width: 480px) {
+    .hero__text h1 {
+        font-size: 1.8rem;
+    }
+
+    .product-card__actions {
+        grid-template-columns: 1fr;
+        gap: 10px;
     }
 }
