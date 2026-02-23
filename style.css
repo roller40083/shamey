@@ -652,6 +652,35 @@ body.dark-theme .mobile-menu__content .mobile-menu__link,
 body.dark-theme .mobile-menu__content .mobile-menu__close {
   color: #fff;
 }
+
+.modal-footer {
+  padding: 20px 40px;
+  border-top: 1px solid #f1f5f9;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: white;
+  margin-top: auto;
+}
+.modal-footer .price {
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: #0f172a;
+}
+
+.reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.reveal.active {
+  opacity: 1;
+  transform: translateY(0);
+}
+.reveal.delay-100 {
+  transition-delay: 0.2s;
+}
+
 @media (max-width: 768px) {
   body {
     padding-top: 60px;

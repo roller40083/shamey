@@ -141,47 +141,48 @@ document.addEventListener('DOMContentLoaded', () => {
     modal.querySelector('.modal-close').addEventListener('click', closeModal);
     modal.querySelector('.modal-overlay').addEventListener('click', closeModal);
     window.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeModal(); });
-});
 
-// --- 6. ЛОГИКА БУРГЕР-МЕНЮ ---
-const burgerBtn = document.querySelector('.menu-icon');
-const mobileMenu = document.getElementById('mobile-menu');
-const closeMenuBtn = document.querySelector('.mobile-menu__close');
-const menuOverlay = document.querySelector('.mobile-menu__overlay');
 
-if (burgerBtn && mobileMenu) {
-    const openMenu = () => {
-        mobileMenu.classList.add('active');
-        document.body.style.overflow = 'hidden';
-    };
+    // --- 6. ЛОГИКА БУРГЕР-МЕНЮ ---
+    const burgerBtn = document.querySelector('.menu-icon');
+    const mobileMenu = document.getElementById('mobile-menu');
+    const closeMenuBtn = document.querySelector('.mobile-menu__close');
+    const menuOverlay = document.querySelector('.mobile-menu__overlay');
 
-    const closeMenu = () => {
-        mobileMenu.classList.remove('active');
-        document.body.style.overflow = '';
-    };
+    if (burgerBtn && mobileMenu) {
+        const openMenu = () => {
+            mobileMenu.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        };
 
-    burgerBtn.addEventListener('click', openMenu);
-    closeMenuBtn.addEventListener('click', closeMenu);
-    menuOverlay.addEventListener('click', closeMenu);
-}
+        const closeMenu = () => {
+            mobileMenu.classList.remove('active');
+            document.body.style.overflow = '';
+        };
 
-// --- 7. ТЕМНАЯ ТЕМА ---
-const themeBtn = document.getElementById('theme-toggle');
-const currentTheme = localStorage.getItem('theme');
-
-// Проверяем, была ли сохранена тема
-if (currentTheme === 'dark') {
-    document.body.classList.add('dark-theme');
-}
-
-themeBtn.addEventListener('click', () => {
-    // Переключаем класс
-    document.body.classList.toggle('dark-theme');
-
-    // Сохраняем выбор в память браузера
-    let theme = 'light';
-    if (document.body.classList.contains('dark-theme')) {
-        theme = 'dark';
+        burgerBtn.addEventListener('click', openMenu);
+        closeMenuBtn.addEventListener('click', closeMenu);
+        menuOverlay.addEventListener('click', closeMenu);
     }
-    localStorage.setItem('theme', theme);
+
+    // --- 7. ТЕМНАЯ ТЕМА ---
+    const themeBtn = document.getElementById('theme-toggle');
+    const currentTheme = localStorage.getItem('theme');
+
+    // Проверяем, была ли сохранена тема
+    if (currentTheme === 'dark') {
+        document.body.classList.add('dark-theme');
+    }
+
+    themeBtn.addEventListener('click', () => {
+        // Переключаем класс
+        document.body.classList.toggle('dark-theme');
+
+        // Сохраняем выбор в память браузера
+        let theme = 'light';
+        if (document.body.classList.contains('dark-theme')) {
+            theme = 'dark';
+        }
+        localStorage.setItem('theme', theme);
+    });
 });

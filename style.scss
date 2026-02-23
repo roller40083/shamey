@@ -758,8 +758,10 @@ body.dark-theme {
                 border-left-color: #fff;
                 color: #fff;
             }
+
         }
     }
+
 
     .mobile-menu__content {
         background: $color-gray-bg;
@@ -768,10 +770,39 @@ body.dark-theme {
         .mobile-menu__close {
             color: #fff;
         }
+    }
+}
 
-        .badge {
-            
-        }
+.modal-footer {
+    padding: 20px 40px;
+    border-top: 1px solid #f1f5f9;
+    display: flex;
+    justify-content: space-between; // Разносит цену и кнопку по разным краям
+    align-items: center; // Выравнивает их ровно по центру по вертикали
+    background: white;
+    margin-top: auto; // Жестко прижимает блок к низу модалки
+
+    .price {
+        font-size: 1.5rem;
+        font-weight: 800;
+        color: $color-accent;
+    }
+}
+
+// Анимация появления
+.reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+
+    &.active {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    // Для картинки в Hero, чтобы она появлялась чуть позже текста
+    &.delay-100 {
+        transition-delay: 0.2s;
     }
 }
 
