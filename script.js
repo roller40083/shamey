@@ -142,3 +142,25 @@ document.addEventListener('DOMContentLoaded', () => {
     modal.querySelector('.modal-overlay').addEventListener('click', closeModal);
     window.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeModal(); });
 });
+
+// --- 6. ЛОГИКА БУРГЕР-МЕНЮ ---
+const burgerBtn = document.querySelector('.menu-icon');
+const mobileMenu = document.getElementById('mobile-menu');
+const closeMenuBtn = document.querySelector('.mobile-menu__close');
+const menuOverlay = document.querySelector('.mobile-menu__overlay');
+
+if (burgerBtn && mobileMenu) {
+    const openMenu = () => {
+        mobileMenu.classList.add('active');
+        document.body.style.overflow = 'hidden';
+    };
+
+    const closeMenu = () => {
+        mobileMenu.classList.remove('active');
+        document.body.style.overflow = '';
+    };
+
+    burgerBtn.addEventListener('click', openMenu);
+    closeMenuBtn.addEventListener('click', closeMenu);
+    menuOverlay.addEventListener('click', closeMenu);
+}
