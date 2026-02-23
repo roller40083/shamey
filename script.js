@@ -164,3 +164,24 @@ if (burgerBtn && mobileMenu) {
     closeMenuBtn.addEventListener('click', closeMenu);
     menuOverlay.addEventListener('click', closeMenu);
 }
+
+// --- 7. ТЕМНАЯ ТЕМА ---
+const themeBtn = document.getElementById('theme-toggle');
+const currentTheme = localStorage.getItem('theme');
+
+// Проверяем, была ли сохранена тема
+if (currentTheme === 'dark') {
+    document.body.classList.add('dark-theme');
+}
+
+themeBtn.addEventListener('click', () => {
+    // Переключаем класс
+    document.body.classList.toggle('dark-theme');
+
+    // Сохраняем выбор в память браузера
+    let theme = 'light';
+    if (document.body.classList.contains('dark-theme')) {
+        theme = 'dark';
+    }
+    localStorage.setItem('theme', theme);
+});

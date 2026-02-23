@@ -7,6 +7,10 @@ $color-text: #1e293b;
 $color-text-light: #64748b;
 $color-accent: #0f172a;
 $color-accent-hover: #334155;
+$color-gray-bg: #121212;      // Основной фон (очень темный серый)
+$color-gray-card: #1e1e1e;    // Карточки (чуть светлее)
+$color-gray-border: #2d2d2d;  // Границы
+$color-gray-text: #e2e8f0;    // Основной текст
 $border-radius: 20px;
 $transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 
@@ -111,6 +115,11 @@ body {
             color: transparent;
             -webkit-text-stroke: 1px $color-accent;
         }
+    }
+
+    .menu-box {
+        display:flex;
+        gap:15px;
     }
 
     .menu-icon {
@@ -958,5 +967,155 @@ footer {
             width: fit-content;
             font-weight: 800;
         }
+    }
+}
+
+// ==========================================
+// ИСПРАВЛЕННЫЙ ПЕРЕКЛЮЧАТЕЛЬ ТЕМЫ
+// ==========================================
+.theme-toggle {
+    background: #f1f5f9;
+    border: none;
+    width: 42px;
+    height: 42px;
+    border-radius: 12px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.3rem;
+    transition: $transition;
+    position: relative;
+
+    // Скрываем луну по умолчанию (в светлой теме)
+    .moon { display: none; }
+    .sun { display: block; }
+
+    &:hover {
+        background: #e2e8f0;
+        transform: scale(1.05);
+    }
+}
+
+// ГЛОБАЛЬНЫЕ ТЕМНЫЕ ЦВЕТА
+body.dark-theme {
+    background-color: $color-gray-bg;
+    color: $color-gray-text;
+
+    // ЛОГИКА СМЕНЫ ИКОНОК
+    .theme-toggle {
+        background: #2d2d2d;
+        
+        .sun { display: none; }  // Прячем солнце в темной теме
+        .moon { display: block; } // Показываем луну в темной теме
+        
+        &:hover {
+            background: #3d3d3d;
+        }
+    }
+
+    // Остальные стили (ШАПКА, КАРТОЧКИ и т.д. остаются без изменений)
+    .stylish-nav {
+        background: rgba(18, 18, 18, 0.8);
+        border-bottom: 1px solid $color-gray-border;
+        // ... (твой остальной код)
+    }
+    // ...
+}
+
+// ГЛОБАЛЬНЫЕ ТЕМНЫЕ ЦВЕТА
+body.dark-theme {
+    background-color: $color-gray-bg;
+    color: $color-gray-text;
+
+    // ШАПКА
+    .stylish-nav {
+        background: rgba(18, 18, 18, 0.8);
+        border-bottom: 1px solid $color-gray-border;
+        .logo-box .name-filled { color: #fff; }
+        .logo-box .name-outlined { -webkit-text-stroke: 1px #fff; }
+        .menu-text { color: #fff; }
+        .hamburger span { background: #fff; }
+    }
+
+    // СЕКЦИЯ МАГАЗИНА
+    .shop { background-color: #181818; }
+    .section-title { color: #fff; }
+
+    // КАРТОЧКИ
+    .product-card {
+        background: $color-gray-card;
+        border: 1px solid $color-gray-border;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+
+        h3 { color: #fff; }
+        .description { color: #94a3b8; }
+
+        // КНОПКИ В КАРТОЧКЕ
+        .btn--primary { // Кнопка "Купить"
+            background-color: #fff;
+            color: #000;
+            &:hover {
+                background-color: #e2e8f0;
+                box-shadow: 0 5px 15px rgba(255, 255, 255, 0.1);
+            }
+        }
+
+        .btn--outline { // Кнопка "Подробнее"
+            border-color: #475569;
+            color: #fff;
+            &:hover {
+                background-color: rgba(255, 255, 255, 0.05);
+                border-color: #fff;
+            }
+        }
+        
+        .card-price-badge {
+            background: #2d2d2d;
+            color: #fff;
+            border: 1px solid #475569;
+        }
+    }
+
+    // МОДАЛЬНОЕ ОКНО
+    .modal-window {
+        background: $color-gray-bg;
+        border: 1px solid $color-gray-border;
+
+        .modal-info { background: $color-gray-bg; }
+        .modal-title { color: #fff; }
+        .modal-desc-content { 
+            color: #cbd5e1;
+            h3, h4 { color: #fff; }
+            .important-note { 
+                background: #1e1e1e; 
+                border-left-color: #fff; 
+                color: #fff;
+            }
+        }
+        
+        .modal-footer {
+            background: #181818;
+            border-top: 1px solid $color-gray-border;
+            .price { color: #fff; }
+            
+            .btn--primary { // Кнопка "Купить" в модалке
+                background-color: #fff;
+                color: #000;
+            }
+        }
+
+        .modal-close {
+            background: #2d2d2d;
+            color: #fff;
+        }
+    }
+
+    // МЕНЮ
+    .mobile-menu__content {
+        background: $color-gray-bg;
+        .mobile-menu__link { color: #fff; }
+        .mobile-menu__close { color: #fff; }
+        .badge { background: #2d2d2d; color: #94a3b8; }
     }
 }
