@@ -20,15 +20,19 @@ document.addEventListener('DOMContentLoaded', () => {
     window.addEventListener('scroll', revealOnScroll);
     revealOnScroll(); // Чтобы верхние элементы появились сразу
 
-    // 2. Временная заглушка для кнопок покупки
-    const buyButtons = document.querySelectorAll('.buy-btn');
+    
+// 2. Логика для всех кнопок "Купить" (и в карточках, и в модалке)
+const buyButtons = document.querySelectorAll('.buy-btn, .modal-footer .btn--primary');
 
-    buyButtons.forEach(btn => {
-        btn.addEventListener('click', () => {
-            // В будущем здесь будет код открытия платежного виджета
-            alert('Здесь будет открываться окно оплаты! Сейчас сайт в демо-режиме.');
-        });
+buyButtons.forEach(btn => {
+    btn.addEventListener('click', (e) => {
+        e.preventDefault(); // Отменяем стандартное поведение
+        e.stopPropagation(); // Чтобы клик не проваливался в открытие модалки
+        
+        // Переход в телеграм
+        window.open('https://t.me/shameychat_bot', '_blank');
     });
+});
 });
 
 document.addEventListener('DOMContentLoaded', () => {
