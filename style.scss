@@ -5,7 +5,7 @@ $font-main: 'Inter', sans-serif;
 $color-bg: #ffffff;
 $color-text: #1e293b;
 $color-text-light: #64748b;
-$color-accent: #0f172a; 
+$color-accent: #0f172a;
 $color-accent-hover: #334155;
 $border-radius: 20px;
 $transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
@@ -17,6 +17,7 @@ $transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     box-sizing: border-box;
     margin: 0;
     padding: 0;
+    scroll-behavior: smooth;
 }
 
 body {
@@ -54,6 +55,7 @@ body {
     &--primary {
         background-color: $color-accent;
         color: white;
+
         &:hover {
             background-color: $color-accent-hover;
             transform: translateY(-2px);
@@ -65,6 +67,7 @@ body {
         background-color: transparent;
         border-color: #e2e8f0;
         color: $color-accent;
+
         &:hover {
             border-color: $color-accent;
             background-color: #f8fafc;
@@ -77,7 +80,9 @@ body {
 // ==========================================
 .stylish-nav {
     position: fixed;
-    top: 0; left: 0; width: 100%;
+    top: 0;
+    left: 0;
+    width: 100%;
     padding: 15px 0;
     z-index: 100;
     background: rgba(255, 255, 255, 0.8);
@@ -97,7 +102,11 @@ body {
         letter-spacing: -0.02em;
         display: flex;
         gap: 6px;
-        .name-filled { color: $color-accent; }
+
+        .name-filled {
+            color: $color-accent;
+        }
+
         .name-outlined {
             color: transparent;
             -webkit-text-stroke: 1px $color-accent;
@@ -109,16 +118,38 @@ body {
         align-items: center;
         gap: 10px;
         cursor: pointer;
-        .menu-text { font-size: 0.7rem; font-weight: 700; letter-spacing: 0.1em; }
+
+        .menu-text {
+            font-size: 0.7rem;
+            font-weight: 700;
+            letter-spacing: 0.1em;
+        }
+
         .hamburger {
-            display: flex; flex-direction: column; gap: 5px;
-            span { 
-                display: block; height: 2px; background: $color-accent; transition: 0.3s;
-                &:first-child { width: 25px; }
-                &:last-child { width: 15px; align-self: flex-end; }
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+
+            span {
+                display: block;
+                height: 2px;
+                background: $color-accent;
+                transition: 0.3s;
+
+                &:first-child {
+                    width: 25px;
+                }
+
+                &:last-child {
+                    width: 15px;
+                    align-self: flex-end;
+                }
             }
         }
-        &:hover .hamburger span { width: 25px; }
+
+        &:hover .hamburger span {
+            width: 25px;
+        }
     }
 }
 
@@ -136,16 +167,32 @@ body {
         grid-template-columns: 1fr 1fr;
         gap: 60px;
         align-items: center;
-        @media (max-width: 768px) { grid-template-columns: 1fr; text-align: center; }
+
+        @media (max-width: 768px) {
+            grid-template-columns: 1fr;
+            text-align: center;
+        }
     }
 
     &__text {
-        h1 { font-size: 3.5rem; line-height: 1.1; margin-bottom: 20px; font-weight: 800; }
-        p { font-size: 1.1rem; color: $color-text-light; margin-bottom: 30px; }
+        h1 {
+            font-size: 3.5rem;
+            line-height: 1.1;
+            margin-bottom: 20px;
+            font-weight: 800;
+        }
+
+        p {
+            font-size: 1.1rem;
+            color: $color-text-light;
+            margin-bottom: 30px;
+        }
     }
 
     &__image img {
-        width: 100%; max-width: 450px; border-radius: 30px;
+        width: 100%;
+        max-width: 450px;
+        border-radius: 30px;
         box-shadow: 30px 30px 0px rgba($color-accent, 0.05);
     }
 }
@@ -153,8 +200,17 @@ body {
 // ==========================================
 // КАРТОЧКИ ТОВАРОВ
 // ==========================================
-.shop { padding: 80px 0; background: #f8fafc; }
-.section-title { font-size: 2.5rem; text-align: center; margin-bottom: 50px; font-weight: 800; }
+.shop {
+    padding: 80px 0;
+    background: #f8fafc;
+}
+
+.section-title {
+    font-size: 2.5rem;
+    text-align: center;
+    margin-bottom: 50px;
+    font-weight: 800;
+}
 
 .products-grid {
     display: grid;
@@ -174,20 +230,35 @@ body {
 
     &:hover {
         transform: translateY(-10px);
-        box-shadow: 0 20px 40px rgba(0,0,0,0.08);
-        .product-card__image img { transform: scale(1.05); }
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
+
+        .product-card__image img {
+            transform: scale(1.05);
+        }
     }
 
     &__image {
         height: 320px;
         overflow: hidden;
         position: relative;
-        img { width: 100%; height: 100%; object-fit: cover; transition: 0.6s; }
-        
+
+        img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: 0.6s;
+        }
+
         .card-price-badge {
-            position: absolute; top: 15px; right: 15px;
-            background: white; padding: 6px 15px; border-radius: 50px;
-            font-weight: 800; font-size: 0.9rem; box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: white;
+            padding: 6px 15px;
+            border-radius: 50px;
+            font-weight: 800;
+            font-size: 0.9rem;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
         }
     }
 
@@ -196,8 +267,19 @@ body {
         display: flex;
         flex-direction: column;
         flex-grow: 1;
-        h3 { font-size: 1.4rem; margin-bottom: 10px; color: $color-accent; }
-        .description { color: $color-text-light; font-size: 0.95rem; margin-bottom: 20px; flex-grow: 1; }
+
+        h3 {
+            font-size: 1.4rem;
+            margin-bottom: 10px;
+            color: $color-accent;
+        }
+
+        .description {
+            color: $color-text-light;
+            font-size: 0.95rem;
+            margin-bottom: 20px;
+            flex-grow: 1;
+        }
     }
 
     &__actions {
@@ -213,31 +295,52 @@ body {
 // ==========================================
 .modal {
     position: fixed;
-    top: 0; left: 0; width: 100%; height: 100%;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
     z-index: 1000;
-    display: flex; align-items: center; justify-content: center;
-    opacity: 0; visibility: hidden; pointer-events: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
     transition: all 0.4s ease;
 
     &.active {
-        opacity: 1; visibility: visible; pointer-events: all;
-        .modal-window { transform: scale(1) translateY(0); opacity: 1; }
+        opacity: 1;
+        visibility: visible;
+        pointer-events: all;
+
+        .modal-window {
+            transform: scale(1) translateY(0);
+            opacity: 1;
+        }
     }
 
     &-overlay {
-        position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-        background: rgba(15, 23, 42, 0.9); backdrop-filter: blur(8px);
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(15, 23, 42, 0.9);
+        backdrop-filter: blur(8px);
     }
 
     &-window {
         position: relative;
         background: white;
-        width: 95%; max-width: 1200px; height: 750px;
+        width: 95%;
+        max-width: 1200px;
+        height: 750px;
         border-radius: 30px;
         display: flex;
         z-index: 2;
         overflow: hidden;
-        transform: scale(0.9) translateY(30px); opacity: 0;
+        transform: scale(0.9) translateY(30px);
+        opacity: 0;
         transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
 
         @media (max-width: 768px) {
@@ -249,18 +352,39 @@ body {
     }
 
     &-close {
-        position: absolute; top: 20px; right: 20px;
-        width: 40px; height: 40px; border-radius: 50%;
-        background: white; border: none; cursor: pointer; z-index: 10;
-        font-size: 1.5rem; display: flex; align-items: center; justify-content: center;
-        box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-        &:hover { color: #ef4444; transform: rotate(90deg); }
+        position: absolute;
+        top: 20px;
+        right: 20px;
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        background: white;
+        border: none;
+        cursor: pointer;
+        z-index: 10;
+        font-size: 1.5rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+
+        &:hover {
+            color: #ef4444;
+            transform: rotate(90deg);
+        }
+
         transition: 0.3s;
     }
 
     &-body {
-        display: flex; width: 100%; height: 100%;
-        @media (max-width: 768px) { flex-direction: column; height: auto; }
+        display: flex;
+        width: 100%;
+        height: 100%;
+
+        @media (max-width: 768px) {
+            flex-direction: column;
+            height: auto;
+        }
     }
 
     &-gallery {
@@ -269,13 +393,33 @@ body {
         background: #f1f5f9;
         position: relative;
         transition: width 0.6s ease;
-        @media (max-width: 768px) { width: 100% !important; height: 300px; flex-shrink: 0; }
 
-        .gallery-track { width: 100%; height: 100%; position: relative; }
+        @media (max-width: 768px) {
+            width: 100% !important;
+            height: 300px;
+            flex-shrink: 0;
+        }
+
+        .gallery-track {
+            width: 100%;
+            height: 100%;
+            position: relative;
+        }
+
         img {
-            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-            object-fit: cover; opacity: 0; transition: 0.8s;
-            &.active { opacity: 1; z-index: 1; }
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0;
+            transition: 0.8s;
+
+            &.active {
+                opacity: 1;
+                z-index: 1;
+            }
         }
     }
 
@@ -284,9 +428,17 @@ body {
         display: flex;
         flex-direction: column;
         min-width: 0; // Для корректного флекса
-        @media (max-width: 768px) { height: auto; }
 
-        h2 { font-size: 2rem; font-weight: 800; padding: 40px 40px 10px; color: $color-accent; }
+        @media (max-width: 768px) {
+            height: auto;
+        }
+
+        h2 {
+            font-size: 2rem;
+            font-weight: 800;
+            padding: 40px 40px 10px;
+            color: $color-accent;
+        }
     }
 
     &-desc-content {
@@ -296,33 +448,88 @@ body {
         color: $color-text-light;
         line-height: 1.7;
 
-        @media (max-width: 768px) { overflow: visible; padding: 20px; }
+        @media (max-width: 768px) {
+            overflow: visible;
+            padding: 20px;
+        }
 
         // Кастомный скроллбар (только десктоп)
-        &::-webkit-scrollbar { width: 5px; }
-        &::-webkit-scrollbar-thumb { background: #e2e8f0; border-radius: 10px; }
+        &::-webkit-scrollbar {
+            width: 5px;
+        }
+
+        &::-webkit-scrollbar-thumb {
+            background: #e2e8f0;
+            border-radius: 10px;
+        }
 
         // Стили текста упражнений
-        h3 { color: $color-accent; margin: 25px 0 10px; font-size: 1.3rem; }
-        h4 { color: $color-accent; margin: 15px 0 5px; font-size: 1rem; text-transform: uppercase; }
-        p { margin-bottom: 15px; }
-        ul { margin-bottom: 15px; padding-left: 20px; li { margin-bottom: 5px; } }
-        
-        .photo-credit { font-size: 0.8rem; font-style: italic; opacity: 0.7; display: block; margin-bottom: 20px; }
+        h3 {
+            color: $color-accent;
+            margin: 25px 0 10px;
+            font-size: 1.3rem;
+        }
+
+        h4 {
+            color: $color-accent;
+            margin: 15px 0 5px;
+            font-size: 1rem;
+            text-transform: uppercase;
+        }
+
+        p {
+            margin-bottom: 15px;
+        }
+
+        ul {
+            margin-bottom: 15px;
+            padding-left: 20px;
+
+            li {
+                margin-bottom: 5px;
+            }
+        }
+
+        .photo-credit {
+            font-size: 0.8rem;
+            font-style: italic;
+            opacity: 0.7;
+            display: block;
+            margin-bottom: 20px;
+        }
+
         .important-note {
-            background: #f8fafc; padding: 20px; border-radius: 15px;
-            border-left: 4px solid $color-accent; margin: 20px 0;
-            h4 { margin-top: 0; }
+            background: #f8fafc;
+            padding: 20px;
+            border-radius: 15px;
+            border-left: 4px solid $color-accent;
+            margin: 20px 0;
+
+            h4 {
+                margin-top: 0;
+            }
         }
     }
 
     &-footer {
         padding: 25px 40px;
         border-top: 1px solid #f1f5f9;
-        display: flex; justify-content: space-between; align-items: center;
-        @media (max-width: 768px) { padding: 20px; position: sticky; bottom: 0; background: white; }
-        
-        .price { font-size: 1.5rem; font-weight: 800; color: $color-accent; }
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        @media (max-width: 768px) {
+            padding: 20px;
+            position: sticky;
+            bottom: 0;
+            background: white;
+        }
+
+        .price {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: $color-accent;
+        }
     }
 }
 
@@ -330,10 +537,188 @@ body {
 // АНИМАЦИИ ПОЯВЛЕНИЯ
 // ==========================================
 .reveal {
-    opacity: 0; transform: translateY(30px); transition: 0.8s ease-out;
-    &.active { opacity: 1; transform: translateY(0); }
-}
-.delay-100 { transition-delay: 0.1s; }
-.delay-200 { transition-delay: 0.2s; }
+    opacity: 0;
+    transform: translateY(30px);
+    transition: 0.8s ease-out;
 
-footer { padding: 40px 0; text-align: center; color: $color-text-light; border-top: 1px solid #f1f5f9; }
+    &.active {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.delay-100 {
+    transition-delay: 0.1s;
+}
+
+.delay-200 {
+    transition-delay: 0.2s;
+}
+
+footer {
+    padding: 40px 0;
+    text-align: center;
+    color: $color-text-light;
+    border-top: 1px solid #f1f5f9;
+}
+
+// ==========================================
+// АДАПТИВНОСТЬ (MOBILE FIRST / TABLET)
+// ==========================================
+
+@media (max-width: 768px) {
+    body {
+        padding-top: 60px; // Уменьшаем отступ шапки
+    }
+
+    // 1. Шрифты и заголовки
+    .hero__text h1 {
+        font-size: 2.2rem; // Было 3.5rem - слишком много для мобилки
+        line-height: 1.2;
+    }
+
+    .section-title {
+        font-size: 1.8rem;
+        margin-bottom: 30px;
+    }
+
+    // 2. Секция Hero
+    .hero {
+        padding: 40px 0;
+        min-height: auto; // Убираем 80vh, чтобы не было дырок
+    }
+
+    .hero__image img {
+        max-width: 280px; // Уменьшаем фото Давида, чтобы влезло
+        box-shadow: 15px 15px 0px rgba($color-accent, 0.05); // Уменьшаем тень
+    }
+
+    // 3. Сетка товаров
+    .products-grid {
+        grid-template-columns: 1fr; // Строго в одну колонку
+        gap: 20px;
+    }
+
+    .product-card__image {
+        height: 250px; // Чуть ниже картинку товара
+    }
+
+    // 4. Модальное окно (Исправляем высоту)
+    .modal-window {
+        height: 95vh; // Почти на весь экран
+        width: 100%;
+        border-radius: 20px 20px 0 0; // Скругляем только верх (как в модных аппках)
+        align-self: flex-end; // Прижимаем к низу
+        transform: translateY(100px); // Анимация выезда снизу
+        
+    }
+
+    .modal.active .modal-window {
+        transform: translateY(0);
+    }
+
+    .modal-info h2 {
+        font-size: 1.5rem;
+        padding: 20px 20px 10px;
+    }
+
+    .modal-footer {
+        flex-direction: row; // Оставляем в ряд цену и кнопку
+        padding: 15px 20px;
+
+        .price {
+            font-size: 1.2rem;
+        }
+
+        .btn {
+            padding: 10px 16px;
+            font-size: 0.8rem;
+        }
+    }
+}
+
+// Совсем маленькие экраны (iPhone SE и т.д.)
+@media (max-width: 480px) {
+    .hero__text h1 {
+        font-size: 1.8rem;
+    }
+
+    .product-card__actions {
+        grid-template-columns: 1fr; // Кнопки в карточке одна под другой
+    }
+}
+
+// ==========================================
+// АДАПТИВНОСТЬ (ТОЛЬКО ДЛЯ МОБИЛОК)
+// ==========================================
+
+@media (max-width: 768px) {
+    // 1. Шрифты и отступы (чтобы не было гигантским)
+    body { padding-top: 60px; }
+    .hero { padding: 40px 0; min-height: auto; }
+    .hero__text h1 { font-size: 2.2rem; }
+    .section-title { font-size: 1.8rem; margin-bottom: 30px; }
+    
+    // 2. Сетка товаров строго в один столбец
+    .products-grid { grid-template-columns: 1fr; }
+    .product-card__image { height: 250px; }
+
+    // 3. Исправляем модалку под мобильный экран
+    .modal-window {
+        flex-direction: column;
+        height: 100vh; // На всю высоту телефона
+        width: 100vw;  // На всю ширину
+        max-width: 100%;
+        border-radius: 0; // Убираем скругления
+        margin: 0;
+        transform: translateY(100%); // Выезжает снизу
+    }
+
+    .modal-body {
+        flex-direction: column;
+        height: 100%;
+    }
+
+    // Глушим расчеты JS и делаем картинку фиксированной высоты
+    .modal-gallery {
+        width: 100% !important; 
+        height: 35vh; 
+        flex: 0 0 35vh;
+    }
+
+    // Настраиваем текстовую часть
+    .modal-info {
+        height: 65vh; 
+        padding: 0;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .modal-info h2 {
+        font-size: 1.5rem;
+        padding: 20px 20px 10px;
+    }
+
+    .modal-desc-content {
+        padding: 0 20px 20px;
+        flex: 1;
+        overflow-y: auto; // Разрешаем тексту скроллиться
+    }
+
+    // Прибиваем кнопку "Купить" к низу экрана смартфона
+    .modal-footer {
+        position: sticky;
+        bottom: 0;
+        background: white;
+        padding: 15px 20px;
+        box-shadow: 0 -5px 15px rgba(0,0,0,0.05);
+        z-index: 10;
+    }
+}
+
+// Для совсем узких экранов (старые айфоны)
+@media (max-width: 480px) {
+    .hero__text h1 { font-size: 1.8rem; }
+    // Кнопки в карточке товара встанут одна под другой
+    .product-card__actions { grid-template-columns: 1fr; gap: 10px; }
+}
