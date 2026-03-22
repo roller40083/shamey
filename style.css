@@ -779,4 +779,236 @@ body.dark-theme .mobile-menu__content .mobile-menu__close {
     grid-template-columns: 1fr;
     gap: 10px;
   }
+}
+.pages-wrapper {
+  display: flex;
+  width: 200vw;
+  transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+  will-change: transform;
+}
+.pages-wrapper.show-events {
+  transform: translateX(-50%);
+}
+
+.page {
+  width: 50%;
+  min-height: 100vh;
+  flex-shrink: 0;
+  overflow-x: hidden;
+  display: flex;
+  flex-direction: column;
+}
+.page .events-section,
+.page .shop {
+  flex: 1;
+}
+
+.events-hero {
+  padding: 60px 0 30px;
+}
+.events-hero h1 {
+  font-size: 3.5rem;
+  font-weight: 900;
+  margin: 16px 0 10px;
+}
+.events-hero p {
+  font-size: 1.1rem;
+  color: #64748b;
+}
+
+.back-btn {
+  margin-bottom: 20px;
+  font-size: 0.85rem;
+}
+
+.events-section {
+  padding: 10px 0 80px;
+}
+
+.events-group-title {
+  font-size: 1rem;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #94a3b8;
+  margin: 50px 0 28px;
+}
+
+.timeline {
+  position: relative;
+  padding-left: 30px;
+}
+.timeline::before {
+  content: "";
+  position: absolute;
+  left: 120px;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: #e2e8f0;
+}
+
+.timeline-item {
+  display: grid;
+  grid-template-columns: 90px 20px 1fr;
+  gap: 0 20px;
+  align-items: flex-start;
+  margin-bottom: 30px;
+  position: relative;
+}
+
+.timeline-date {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  padding-top: 18px;
+  line-height: 1.2;
+}
+
+.date-day {
+  font-size: 1.8rem;
+  font-weight: 900;
+  color: #0f172a;
+}
+
+.date-month {
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: #64748b;
+}
+
+.date-year {
+  font-size: 0.7rem;
+  color: #94a3b8;
+}
+
+.timeline-dot {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: #0f172a;
+  border: 3px solid white;
+  box-shadow: 0 0 0 2px #0f172a;
+  margin-top: 22px;
+  justify-self: center;
+  flex-shrink: 0;
+}
+.timeline-item.past .timeline-dot {
+  background: #cbd5e1;
+  box-shadow: 0 0 0 2px #cbd5e1;
+}
+
+.timeline-card {
+  background: white;
+  border: 1px solid #e2e8f0;
+  border-radius: 16px;
+  padding: 20px 24px;
+  transition: all 0.3s ease;
+}
+.timeline-card:hover {
+  transform: translateX(6px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.07);
+}
+.timeline-card h3 {
+  font-size: 1.1rem;
+  font-weight: 800;
+  color: #0f172a;
+  margin-bottom: 6px;
+}
+.timeline-card__meta {
+  font-size: 0.85rem;
+  color: #64748b;
+  margin-bottom: 8px;
+}
+.timeline-card__desc {
+  font-size: 0.9rem;
+  color: #475569;
+  line-height: 1.6;
+}
+.timeline-card__badge {
+  display: inline-block;
+  font-size: 0.65rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  padding: 3px 10px;
+  border-radius: 50px;
+  margin-bottom: 10px;
+}
+.timeline-item.past .timeline-card {
+  opacity: 0.65;
+}
+
+.upcoming-badge {
+  background: #ecfdf5;
+  color: #059669;
+}
+
+.past-badge {
+  background: #f1f5f9;
+  color: #94a3b8;
+}
+
+.timeline-item.past .date-day {
+  color: #94a3b8;
+}
+
+body.dark-theme .events-hero p {
+  color: #94a3b8;
+}
+body.dark-theme .events-group-title {
+  color: #475569;
+}
+body.dark-theme .timeline::before {
+  background: #2d2d2d;
+}
+body.dark-theme .timeline-card {
+  background: #1e1e1e;
+  border-color: #2d2d2d;
+}
+body.dark-theme .timeline-card h3 {
+  color: #fff;
+}
+body.dark-theme .timeline-card__desc {
+  color: #94a3b8;
+}
+body.dark-theme .timeline-dot {
+  border-color: #121212;
+}
+body.dark-theme .date-day {
+  color: #fff;
+}
+body.dark-theme .upcoming-badge {
+  background: #052e16;
+  color: #34d399;
+}
+
+@media (max-width: 768px) {
+  .events-hero h1 {
+    font-size: 2.2rem;
+  }
+  .timeline {
+    padding-left: 0;
+  }
+  .timeline::before {
+    left: 20px;
+  }
+  .timeline-item {
+    grid-template-columns: 20px 1fr;
+    gap: 0 15px;
+    padding-left: 10px;
+  }
+  .timeline-date {
+    display: none;
+  }
+  .timeline-card::before {
+    content: attr(data-date);
+    display: block;
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: #94a3b8;
+    margin-bottom: 6px;
+    letter-spacing: 0.03em;
+  }
 }/*# sourceMappingURL=style.css.map */

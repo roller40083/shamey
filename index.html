@@ -5,23 +5,25 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Давид Шамей</title>
-    <!-- Подключаем скомпилированный CSS -->
     <link rel="stylesheet" href="style.css">
-    <!-- Шрифт Inter для современного вида -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800;900&display=swap" rel="stylesheet">
 </head>
 
 <body>
+
+    <!-- Навигация -->
     <nav class="stylish-nav">
         <div class="container nav-container">
-            <!-- Логотип: Имя залито, Фамилия контуром -->
-            <a href="#" class="logo-box">
+
+            <!-- Логотип: DAVID залито, SHAMEY контуром -->
+            <a href="#" class="logo-box" id="nav-logo">
                 <span class="name-filled">DAVID</span>
                 <span class="name-outlined">SHAMEY</span>
             </a>
 
-            <!-- Декоративный элемент справа (меню) -->
-            <div class="menu-box"> <button id="theme-toggle" class="theme-toggle" aria-label="Сменить тему">
+            <!-- Кнопка смены темы + бургер -->
+            <div class="menu-box">
+                <button id="theme-toggle" class="theme-toggle" aria-label="Сменить тему">
                     <span class="sun">☀️</span>
                     <span class="moon">🌙</span>
                 </button>
@@ -37,163 +39,374 @@
         </div>
     </nav>
 
-    <!-- Шапка / Герой -->
-    <header class="hero">
-        <div class="container hero__container">
-            <div class="hero__text reveal">
-                <h1>Знания, которые <br>меняют подход</h1>
-                <p>Привет! Я Шамей Давид. Здесь я собрал свой опыт в удобные методички, которые помогут тебе вырасти в
-                    силе.</p>
-                <a href="#shop" class="btn btn--primary">Смотреть материалы</a>
-            </div>
-            <div class="hero__image reveal delay-100">
-                <!-- Заглушка для фото автора. Замени src на свое фото -->
-                <img src="https://sun9-42.userapi.com/s/v1/ig2/tCoq5yz_pr9cCBdt19ozKkmj9s-KGaiJ9b4mSRIT_d7LZt55xhRzSs72LYa_jTIpaE0vIj-6RNeOXWJk4oZju1AC.jpg?quality=95&as=32x48,48x72,72x108,108x162,160x240,240x361,360x541,480x721,540x811,640x962,720x1082,1080x1623,1280x1923,1440x2164,1661x2496&from=bu&cs=1661x0"
-                    alt="Фото автора">
-            </div>
-        </div>
-    </header>
+    <!-- Обёртка для слайд-перехода -->
+    <div class="pages-wrapper">
 
-    <!-- Секция с товарами -->
-    <section id="shop" class="shop">
-        <div class="container">
-            <h2 class="section-title reveal">Методички</h2>
+        <!-- ===== СТРАНИЦА 1: ГЛАВНАЯ ===== -->
+        <div class="page" id="page-main">
 
-            <div class="products-grid">
-
-                <!-- Товар 1 -->
-                <div class="product-card reveal">
-                    <div class="product-card__image">
-                        <img src="Images/IMG_0439.PNG" alt="Методичка">
-                        <!-- Маленькая фишка: цена поверх картинки (опционально) -->
-                        <div class="card-price-badge">8 000 ₽</div>
+            <!-- Герой -->
+            <header class="hero">
+                <div class="container hero__container">
+                    <div class="hero__text reveal">
+                        <h1>Знания, которые <br>меняют подход</h1>
+                        <p>Привет! Я Шамей Давид. Здесь я собрал свой опыт в удобные методички, которые помогут тебе вырасти в силе.</p>
+                        <div style="display: flex; gap: 12px; flex-wrap: wrap;">
+                            <a href="#shop" class="btn btn--primary">Смотреть материалы</a>
+                            <!-- Кнопка перехода на страницу мероприятий -->
+                            <button class="btn btn--outline" id="go-to-events">Мероприятия →</button>
+                        </div>
                     </div>
+                    <!-- Фото автора -->
+                    <div class="hero__image reveal delay-100">
+                        <img src="https://sun9-42.userapi.com/s/v1/ig2/tCoq5yz_pr9cCBdt19ozKkmj9s-KGaiJ9b4mSRIT_d7LZt55xhRzSs72LYa_jTIpaE0vIj-6RNeOXWJk4oZju1AC.jpg?quality=95&as=32x48,48x72,72x108,108x162,160x240,240x361,360x541,480x721,540x811,640x962,720x1082,1080x1623,1280x1923,1440x2164,1661x2496&from=bu&cs=1661x0" alt="Фото автора">
+                    </div>
+                </div>
+            </header>
 
-                    <div class="product-card__info">
-                        <h3>Стероидная энциклопедия</h3>
-                        <p class="description">150+ слайдов о фарме, побочках и способах борьбы с ними, мерах
-                            предосторожности, правилах составления курсов.</p>
+            <!-- Секция товаров -->
+            <section id="shop" class="shop">
+                <div class="container">
+                    <h2 class="section-title reveal">Методички</h2>
 
-                        <div class="product-card__actions">
-                            <!-- Кнопка "Подробнее" теперь аккуратная и открывает модалку -->
-                            <button class="btn btn--outline open-modal-btn" data-title="Стероидная энциклопедия 💉"
-                                data-price="8 000 ₽" data-desc="
+                    <div class="products-grid">
+
+                        <!-- Товар 1: Стероидная энциклопедия -->
+                        <div class="product-card reveal">
+                            <div class="product-card__image">
+                                <img src="Images/img0.PNG" alt="Методичка">
+                                <div class="card-price-badge">8 000 ₽</div>
+                            </div>
+                            <div class="product-card__info">
+                                <h3>Стероидная энциклопедия</h3>
+                                <p class="description">150+ слайдов о фарме, побочках и способах борьбы с ними, мерах предосторожности, правилах составления курсов.</p>
+                                <div class="product-card__actions">
+                                    <button class="btn btn--outline open-modal-btn"
+                                        data-title="Стероидная энциклопедия 💉"
+                                        data-price="8 000 ₽"
+                                        data-desc="
 <p>Я подготовил фундаментальный материал: <strong>150+ слайдов</strong> о фармакологии, побочных эффектах и способах борьбы с ними. Здесь собрано всё — от мер предосторожности до четких правил составления курсов.</p>
-
-  <div class='important-note'>
-    <strong>База знаний:</strong> Тонны данных из открытых и закрытых источников, мой личный опыт и экспертное мнение лучших российских специалистов. 
-  </div>
-
-  <p>Этот материал самодостаточен. Прочитав его, ты закроешь все вопросы:</p>
-  
-  <ul>
-    <li>Как грамотно составлять курсы и проводить ПКТ;</li>
-    <li>Что именно пить, в каких случаях и зачем;</li>
-    <li><strong>Важно:</strong> ты поймешь, почему многим стоит отказаться от этой идеи навсегда.</li>
-  </ul>
-
-  <div class='important-note' style='border-left-color: #10b981;'>
-    <strong>Бонус:</strong> Покупка даёт пожизненный доступ в <strong>закрытый чат</strong>, где ты сможешь лично задавать вопросы по теме.
-  </div>
-" data-images='["Images/img1.jpg", "Images/img2.jpg", "Images/img3.jpg", "Images/img4.jpg"]'>
-                                Подробнее
-                            </button>
-
-                            <!-- Кнопка "Купить" — акцентная -->
-                            <button class="btn btn--primary buy-btn">Купить</button>
+<div class='important-note'>
+  <strong>База знаний:</strong> Тонны данных из открытых и закрытых источников, мой личный опыт и экспертное мнение лучших российских специалистов.
+</div>
+<p>Этот материал самодостаточен. Прочитав его, ты закроешь все вопросы:</p>
+<ul>
+  <li>Как грамотно составлять курсы и проводить ПКТ;</li>
+  <li>Что именно пить, в каких случаях и зачем;</li>
+  <li><strong>Важно:</strong> ты поймешь, почему многим стоит отказаться от этой идеи навсегда.</li>
+</ul>
+<div class='important-note' style='border-left-color: #10b981;'>
+  <strong>Бонус:</strong> Покупка даёт пожизненный доступ в <strong>закрытый чат</strong>, где ты сможешь лично задавать вопросы по теме.
+</div>"
+                                        data-images='["Images/img1.jpg", "Images/img2.jpg", "Images/img3.jpg", "Images/img4.jpg"]'>
+                                        Подробнее
+                                    </button>
+                                    <button class="btn btn--primary buy-btn">Купить</button>
+                                </div>
+                            </div>
                         </div>
+
+                        <!-- Товар 2: Добавки для спортсмена -->
+                        <div class="product-card reveal">
+                            <div class="product-card__image">
+                                <img src="Images/img5.jpg" alt="Методичка">
+                                <div class="card-price-badge">2 500 ₽</div>
+                            </div>
+                            <div class="product-card__info">
+                                <h3>Добавки для спортсмена 💊</h3>
+                                <p class="description">Суставы, сердце, сон, пищеварение — все ответы в одном месте. Без воды и без «а не п*здёж ли это».</p>
+                                <div class="product-card__actions">
+                                    <button class="btn btn--outline open-modal-btn"
+                                        data-title="Добавки для спортсмена 💊"
+                                        data-price="2 500 ₽"
+                                        data-desc="
+<p>Собрал все реально важные вопросы про добавки в одном месте — без воды, без рекламы, без постоянного сомнения «а правда ли это работает».</p>
+<div class='important-note'>
+  <strong>Внутри:</strong> только проверенная информация на основе исследований и личного опыта.
+</div>
+<p>Закрываю самые острые темы:</p>
+<ul>
+  <li>Лучшие добавки для суставов и связок — правда ли глюкозамин работает?</li>
+  <li>НПВС, УВТ, PRP и другие врачебные термины — где правда для спортсмена?</li>
+  <li>Все говорят про инсульт от железок — чем реально помочь сердцу?</li>
+  <li>Замена кофе без синдрома отмены — существует ли?</li>
+  <li>Плохой сон — что принимать, чтобы не словить зависимость от снотворных?</li>
+  <li>Мясо колом в желудке — как наладить ЖКТ, без которого не видать мышц?</li>
+</ul>
+<div class='important-note' style='border-left-color: #10b981;'>
+  <strong>Бонус:</strong> Покупка даёт пожизненный доступ в <strong>закрытый чат</strong>, где можно лично задавать вопросы по теме.
+</div>"
+                                        data-images='["Images/Img6.jpg"]'>
+                                        Подробнее
+                                    </button>
+                                    <button class="btn btn--primary buy-btn">Купить</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Товар 3: Хитрости армрестлинга -->
+                        <div class="product-card reveal">
+                            <div class="product-card__image">
+                                <img src="Images/img7.jpg" alt="Методичка">
+                                <div class="card-price-badge">2 000 ₽</div>
+                            </div>
+                            <div class="product-card__info">
+                                <h3>Хитрости армрестлинга 🤼</h3>
+                                <p class="description">30+ слайдов и часовое видео о работе за столом. Как получать преимущество в любой ситуации — информация, которой никто не делится.</p>
+                                <div class="product-card__actions">
+                                    <button class="btn btn--outline open-modal-btn"
+                                        data-title="Хитрости армрестлинга 🤼"
+                                        data-price="2 000 ₽"
+                                        data-desc="
+<p>Материал полностью посвящён работе за столом — как делать это эффективно и получать преимущество в любой ситуации.</p>
+<div class='important-note'>
+  <strong>Уникальность:</strong> Я лично не видел, чтобы кто-то когда-либо делился такой информацией. Работа в единственном экземпляре, так скажем.
+</div>
+<p>Внутри разберём:</p>
+<ul>
+  <li>Как эффективно работать за столом и доминировать в любой позиции;</li>
+  <li>Где сфолить, а где уйти от борьбы — тактика в деталях;</li>
+  <li>Куда смещать локоть для максимального преимущества;</li>
+  <li>Разбор конкретных положений со скринами и объяснениями.</li>
+</ul>
+<p><strong>Формат:</strong> 30+ слайдов с объяснениями и скринами положений + <strong>часовое видео</strong> с подробным разбором того, что невозможно передать текстом.</p>"
+                                        data-images='["Images/img7.jpg", "Images/img8.jpg"]'>
+                                        Подробнее
+                                    </button>
+                                    <button class="btn btn--primary buy-btn">Купить</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Товар 4: База армрестлинга -->
+                        <div class="product-card reveal">
+                            <div class="product-card__image">
+                                <img src="Images/img9.jpg" alt="Методичка">
+                                <div class="card-price-badge">6 000 ₽</div>
+                            </div>
+                            <div class="product-card__info">
+                                <h3>База армрестлинга 💪</h3>
+                                <p class="description">Анатомия, биомеханика, тренировочные планы и видео по технике. Пожизненный доступ к материалу и группе с единомышленниками.</p>
+                                <div class="product-card__actions">
+                                    <button class="btn btn--outline open-modal-btn"
+                                        data-title="База армрестлинга 💪"
+                                        data-price="6 000 ₽"
+                                        data-desc="
+<p>Материал создан для формирования <strong>полного понимания тренировочного процесса</strong> у начинающих спортсменов — от анатомии до практики за столом.</p>
+<div class='important-note'>
+  <strong>Внутри:</strong> анатомия и биомеханика в армрестлинге, составление тренировочных планов, видео по технике и особенностям выполнения специализированных упражнений.
+</div>
+<p>Что входит в покупку:</p>
+<ul>
+  <li>Пожизненный доступ к основному материалу по армрестлингу;</li>
+  <li>Доступ в закрытую группу с единомышленниками и моими ответами;</li>
+  <li>Трансляции ивентов с моими комментариями;</li>
+  <li>Розыгрыши других материалов для самых активных участников.</li>
+</ul>
+<div class='important-note' style='border-left-color: #10b981;'>
+  <strong>Бонус:</strong> Трансляции и розыгрыши — только для участников группы.
+</div>"
+                                        data-images='["Images/img9.jpg", "Images/img10.jpg"]'>
+                                        Подробнее
+                                    </button>
+                                    <button class="btn btn--primary buy-btn">Купить</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Товар 5: Шамейные Секреты -->
+                        <div class="product-card reveal">
+                            <div class="product-card__image">
+                                <img src="Images/img11.jpg" alt="Канал">
+                                <div class="card-price-badge">от 400 ₽</div>
+                            </div>
+                            <div class="product-card__info">
+                                <h3>Шамейные Секреты 🔒</h3>
+                                <p class="description">Внутрянка подготовки и соревнований, дозировки, эксперименты — то, чем я не делюсь нигде больше.</p>
+                                <div class="product-card__actions">
+                                    <button class="btn btn--outline open-modal-btn"
+                                        data-title="Шамейные Секреты 🔒"
+                                        data-price="от 400 ₽"
+                                        data-desc="
+<p>Всё, чем я <strong>не делюсь на других платформах</strong>: внутрянка подготовки и соревнований, дозировки, эксперименты, сложности — без фильтров.</p>
+<div class='important-note'>
+  <strong>Бонус:</strong> Чат, где я лично отвечаю на любые вопросы.
+</div>
+<p>Варианты подписки:</p>
+<ul>
+  <li><strong>1 месяц</strong> — 400 ₽</li>
+  <li><strong>6 месяцев</strong> — 2 000 ₽</li>
+  <li><strong>Пожизненный доступ</strong> — 10 000 ₽</li>
+</ul>
+<div class='important-note' style='border-left-color: #10b981;'>
+  <strong>Выгода:</strong> Полгода дешевле двух месяцев по отдельности — пожизненный доступ окупается за 2 года.
+</div>"
+                                        data-images='["Images/img11.jpg"]'>
+                                        Подробнее
+                                    </button>
+                                    <button class="btn btn--primary buy-btn">Купить</button>
+                                </div>
+                            </div>
+                        </div>
+
                     </div>
                 </div>
+            </section>
 
-                <!-- Товар 2 -->
-                <div class="product-card reveal">
-                    <div class="product-card__image">
-                        <img src="Images/IMG_0439.PNG" alt="Методичка">
-                        <!-- Маленькая фишка: цена поверх картинки (опционально) -->
-                        <div class="card-price-badge">990 ₽</div>
-                    </div>
-
-                    <div class="product-card__info">
-                        <h3>Основы мастерства</h3>
-                        <p class="description">Базовое руководство для новичков. 50 страниц теории и практики, которые
-                            изменят ваш хват.</p>
-
-                        <div class="product-card__actions">
-                            <!-- Кнопка "Подробнее" теперь аккуратная и открывает модалку -->
-                            <button class="btn btn--outline open-modal-btn" data-title="Основы мастерства"
-                                data-price="990 ₽"
-                                data-desc="<h3>Ваш старт в армрестлинге</h3><p>Полный разбор базовых движений...</p>"
-                                data-images='["Images/img1.jpg", "Images/img2.jpg", "Images/img3.jpg", "Images/img4.jpg"]'>
-                                Подробнее
-                            </button>
-
-                            <!-- Кнопка "Купить" — акцентная -->
-                            <button class="btn btn--primary buy-btn">Купить</button>
-                        </div>
-                    </div>
+            <footer>
+                <div class="container">
+                    <p>&copy; 2026 Давид Шамей. Все права защищены.</p>
                 </div>
+            </footer>
 
-                <!-- Товар 3 -->
-                <div class="product-card reveal">
-                    <div class="product-card__image">
-                        <img src="Images/IMG_0439.PNG" alt="Методичка">
-                        <!-- Маленькая фишка: цена поверх картинки (опционально) -->
-                        <div class="card-price-badge">990 ₽</div>
-                    </div>
-
-                    <div class="product-card__info">
-                        <h3>Основы мастерства</h3>
-                        <p class="description">Базовое руководство для новичков. 50 страниц теории и практики, которые
-                            изменят ваш хват.</p>
-
-                        <div class="product-card__actions">
-                            <!-- Кнопка "Подробнее" теперь аккуратная и открывает модалку -->
-                            <button class="btn btn--outline open-modal-btn" data-title="Основы мастерства"
-                                data-price="990 ₽"
-                                data-desc="<h3>Ваш старт в армрестлинге</h3><p>Полный разбор базовых движений...</p>"
-                                data-images='["Images/img1.jpg", "Images/img2.jpg", "Images/img3.jpg", "Images/img4.jpg"]'>
-                                Подробнее
-                            </button>
-
-                            <!-- Кнопка "Купить" — акцентная -->
-                            <button class="btn btn--primary buy-btn">Купить</button>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
         </div>
-    </section>
+        <!-- конец page-main -->
 
-    <footer>
-        <div class="container">
-            <p>&copy; 2026 Давид Шамей. Все права защищены.</p>
+        <!-- ===== СТРАНИЦА 2: МЕРОПРИЯТИЯ ===== -->
+        <div class="page" id="page-events">
+
+            <section class="events-hero">
+                <div class="container">
+                    <!-- Кнопка назад -->
+                    <button class="btn btn--outline back-btn" id="go-to-main">← Назад</button>
+                    <h1>Мероприятия</h1>
+                    <p>Соревнования и поездки — где я был и куда еду</p>
+                </div>
+            </section>
+
+            <section class="events-section">
+                <div class="container">
+
+                    <!-- Предстоящие события -->
+                    <h2 class="events-group-title">Предстоящие</h2>
+                    <div class="timeline">
+
+                        <div class="timeline-item upcoming">
+                            <div class="timeline-date">
+                                <span class="date-day">14</span>
+                                <span class="date-month">Июн</span>
+                                <span class="date-year">2026</span>
+                            </div>
+                            <div class="timeline-dot"></div>
+                            <div class="timeline-card" data-date="14 июня 2026">
+                                <div class="timeline-card__badge upcoming-badge">Скоро</div>
+                                <h3>Кубок Москвы по армрестлингу</h3>
+                                <p class="timeline-card__meta">📍 Москва, СК Олимпийский</p>
+                                <p class="timeline-card__desc">Городские соревнования, категория до 85 кг. Первый старт сезона.</p>
+                            </div>
+                        </div>
+
+                        <div class="timeline-item upcoming">
+                            <div class="timeline-date">
+                                <span class="date-day">19</span>
+                                <span class="date-month">Июл</span>
+                                <span class="date-year">2026</span>
+                            </div>
+                            <div class="timeline-dot"></div>
+                            <div class="timeline-card" data-date="19 июля 2026">
+                                <div class="timeline-card__badge upcoming-badge">Скоро</div>
+                                <h3>Стронг Сибирь 2026</h3>
+                                <p class="timeline-card__meta">📍 Новосибирск, Арена Сибирь</p>
+                                <p class="timeline-card__desc">Крупнейший турнир Сибирского федерального округа. Ожидается более 300 участников.</p>
+                            </div>
+                        </div>
+
+                        <div class="timeline-item upcoming">
+                            <div class="timeline-date">
+                                <span class="date-day">05</span>
+                                <span class="date-month">Сен</span>
+                                <span class="date-year">2026</span>
+                            </div>
+                            <div class="timeline-dot"></div>
+                            <div class="timeline-card" data-date="5 сентября 2026">
+                                <div class="timeline-card__badge upcoming-badge">Скоро</div>
+                                <h3>Чемпионат Урала</h3>
+                                <p class="timeline-card__meta">📍 Екатеринбург, МВЦ Екатеринбург-Экспо</p>
+                                <p class="timeline-card__desc">Отборочный турнир на первенство России. Борьба правой и левой рукой.</p>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <!-- Прошедшие события -->
+                    <h2 class="events-group-title">Прошедшие</h2>
+                    <div class="timeline">
+
+                        <div class="timeline-item past">
+                            <div class="timeline-date">
+                                <span class="date-day">22</span>
+                                <span class="date-month">Мар</span>
+                                <span class="date-year">2026</span>
+                            </div>
+                            <div class="timeline-dot"></div>
+                            <div class="timeline-card" data-date="22 марта 2026">
+                                <div class="timeline-card__badge past-badge">Завершено</div>
+                                <h3>Железный кулак — Санкт-Петербург</h3>
+                                <p class="timeline-card__meta">📍 Санкт-Петербург, Дворец спорта Юбилейный</p>
+                                <p class="timeline-card__desc">Межрегиональный турнир. Выступил в категории до 85 кг — занял 2 место.</p>
+                            </div>
+                        </div>
+
+                        <div class="timeline-item past">
+                            <div class="timeline-date">
+                                <span class="date-day">18</span>
+                                <span class="date-month">Янв</span>
+                                <span class="date-year">2026</span>
+                            </div>
+                            <div class="timeline-dot"></div>
+                            <div class="timeline-card" data-date="18 января 2026">
+                                <div class="timeline-card__badge past-badge">Завершено</div>
+                                <h3>Открытый чемпионат Краснодарского края</h3>
+                                <p class="timeline-card__meta">📍 Краснодар, СК Олимп</p>
+                                <p class="timeline-card__desc">Зимний старт сезона. Хорошая конкуренция, много знакомых ребят из южного дивизиона.</p>
+                            </div>
+                        </div>
+
+                        <div class="timeline-item past">
+                            <div class="timeline-date">
+                                <span class="date-day">08</span>
+                                <span class="date-month">Ноя</span>
+                                <span class="date-year">2025</span>
+                            </div>
+                            <div class="timeline-dot"></div>
+                            <div class="timeline-card" data-date="8 ноября 2025">
+                                <div class="timeline-card__badge past-badge">Завершено</div>
+                                <h3>Осенний Гром — Казань</h3>
+                                <p class="timeline-card__meta">📍 Казань, Татнефть Арена</p>
+                                <p class="timeline-card__desc">Финал сезона 2025. Один из сильнейших составов года — хорошая проверка формы перед зимой.</p>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </section>
+
+            <footer>
+                <div class="container">
+                    <p>&copy; 2026 Давид Шамей. Все права защищены.</p>
+                </div>
+            </footer>
+
         </div>
-    </footer>
+        <!-- конец page-events -->
 
-    <!-- Модальное окно (одно для всех товаров) -->
+    </div>
+    <!-- конец pages-wrapper -->
+
+    <!-- Модальное окно (одно на все товары) -->
     <div id="product-modal" class="modal">
         <div class="modal-overlay"></div>
         <div class="modal-window">
             <button class="modal-close">&times;</button>
-
             <div class="modal-body">
-                <!-- Слева: Галерея -->
                 <div class="modal-gallery">
                     <button class="gallery-nav prev" aria-label="Назад">&#10094;</button>
                     <button class="gallery-nav next" aria-label="Вперед">&#10095;</button>
-                    <div class="gallery-track">
-
-                        <!-- Сюда JS будет вставлять картинки -->
-                    </div>
+                    <div class="gallery-track"></div>
                 </div>
-
-                <!-- Справа: Описание -->
                 <div class="modal-info">
                     <h2 id="modal-title">Название</h2>
-                    <div id="modal-desc" class="modal-desc-content">
-                        <!-- Сюда JS вставит текст -->
-                    </div>
+                    <div id="modal-desc" class="modal-desc-content"></div>
                     <div class="modal-footer">
                         <span id="modal-price" class="price">0 ₽</span>
                         <button class="btn btn--primary">Купить сейчас</button>
@@ -203,18 +416,18 @@
         </div>
     </div>
 
+    <!-- Мобильное меню -->
     <div class="mobile-menu" id="mobile-menu">
         <div class="mobile-menu__overlay"></div>
         <div class="mobile-menu__content">
             <button class="mobile-menu__close">&times;</button>
             <nav class="mobile-menu__nav">
-                <a href="#" class="mobile-menu__link">Меню</a>
-                <div class="mobile-menu__dev">
-                    <span class="badge">В разработке</span>
-                </div>
+                <a href="#" class="mobile-menu__link" id="mobile-go-main">Методички</a>
+                <a href="#" class="mobile-menu__link" id="mobile-go-events">Мероприятия</a>
             </nav>
         </div>
     </div>
+
     <script src="script.js"></script>
 </body>
 

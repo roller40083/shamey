@@ -1,21 +1,51 @@
 document.addEventListener('DOMContentLoaded', () => {
 
-    // --- 1. АНИМАЦИЯ ПОЯВЛЕНИЯ ПРИ СКРОЛЛЕ ---
+    // ===== СЛАЙД-ПЕРЕХОД МЕЖДУ СТРАНИЦАМИ =====
+
+    const wrapper = document.querySelector('.pages-wrapper');
+    const goToEvents = document.getElementById('go-to-events');
+    const goToMain = document.getElementById('go-to-main');
+    const mobileGoMain = document.getElementById('mobile-go-main');
+    const mobileGoEvents = document.getElementById('mobile-go-events');
+
+    // Переход на страницу мероприятий (главная уходит влево)
+    const showEvents = () => {
+        wrapper.classList.add('show-events');
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    };
+
+    // Возврат на главную
+    const showMain = () => {
+        wrapper.classList.remove('show-events');
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    };
+
+    if (goToEvents) goToEvents.addEventListener('click', showEvents);
+    if (goToMain) goToMain.addEventListener('click', showMain);
+    if (mobileGoMain) mobileGoMain.addEventListener('click', (e) => { e.preventDefault(); showMain(); closeMobileMenu(); });
+    if (mobileGoEvents) mobileGoEvents.addEventListener('click', (e) => { e.preventDefault(); showEvents(); closeMobileMenu(); });
+
+    // Логотип возвращает на главную
+    const navLogo = document.getElementById('nav-logo');
+    if (navLogo) navLogo.addEventListener('click', (e) => { e.preventDefault(); showMain(); });
+
+
+    // ===== АНИМАЦИЯ ПОЯВЛЕНИЯ ПРИ СКРОЛЛЕ =====
+
     const revealElements = document.querySelectorAll('.reveal');
     const revealOnScroll = () => {
-        const windowHeight = window.innerHeight;
-        const elementVisible = 100;
-        revealElements.forEach((element) => {
-            const elementTop = element.getBoundingClientRect().top;
-            if (elementTop < windowHeight - elementVisible) {
-                element.classList.add('active');
+        revealElements.forEach((el) => {
+            if (el.getBoundingClientRect().top < window.innerHeight - 100) {
+                el.classList.add('active');
             }
         });
     };
     window.addEventListener('scroll', revealOnScroll);
     revealOnScroll();
 
-    // --- 2. ЛОГИКА КНОПОК "КУПИТЬ" (ТЕЛЕГРАМ) ---
+
+    // ===== КНОПКИ "КУПИТЬ" — TELEGRAM =====
+
     const buyButtons = document.querySelectorAll('.buy-btn, .modal-footer .btn--primary');
     buyButtons.forEach(btn => {
         btn.addEventListener('click', (e) => {
@@ -25,7 +55,9 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // --- 3. РАБОТА С МОДАЛЬНЫМ ОКНОМ ---
+
+    // ===== МОДАЛЬНОЕ ОКНО =====
+
     const modal = document.getElementById('product-modal');
     if (!modal) return;
 
@@ -35,7 +67,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const modalWindow = modal.querySelector('.modal-window');
     let sliderInterval;
 
-    // Расчет ширины под картинку
+    // Подгоняем ширину галереи под пропорции активной картинки
     const adjustWidth = () => {
         const activeImg = galleryTrack.querySelector('img.active');
         if (!activeImg || window.innerWidth <= 768) {
@@ -55,15 +87,13 @@ document.addEventListener('DOMContentLoaded', () => {
         else activeImg.onload = calculate;
     };
 
-    // ГЛАВНАЯ ФУНКЦИЯ ОТКРЫТИЯ (теперь вызывается отовсюду)
+    // Открытие модалки — заполняем данными из кнопки товара
     const openProductModal = (btn) => {
-        // Заполняем текст
         document.getElementById('modal-title').textContent = btn.dataset.title;
         document.getElementById('modal-price').textContent = btn.dataset.price;
         descContainer.innerHTML = btn.dataset.desc;
         descContainer.scrollTop = 0;
 
-        // Рендерим картинки
         const images = JSON.parse(btn.dataset.images || '[]');
         galleryTrack.innerHTML = '';
         images.forEach((src, idx) => {
@@ -73,43 +103,33 @@ document.addEventListener('DOMContentLoaded', () => {
             galleryTrack.appendChild(img);
         });
 
-        // Показываем
         modal.classList.add('active');
         document.body.style.overflow = 'hidden';
-
         setTimeout(adjustWidth, 50);
         startSlider();
     };
 
-    // Находим все карточки и вешаем клики
-    const cards = document.querySelectorAll('.product-card');
-    cards.forEach(card => {
+    // Клик по "Подробнее" или по картинке карточки
+    document.querySelectorAll('.product-card').forEach(card => {
         const openBtn = card.querySelector('.open-modal-btn');
         const cardImg = card.querySelector('.product-card__image');
-
         if (openBtn) {
-            // Клик по кнопке "Подробнее"
-            openBtn.addEventListener('click', (e) => {
-                e.preventDefault();
-                openProductModal(openBtn);
-            });
-
-            // ВОТ ОНО: Клик по самой картинке в карточке
-            if (cardImg) {
-                cardImg.addEventListener('click', () => {
-                    openProductModal(openBtn); // Используем данные из кнопки этой же карточки
-                });
-            }
+            openBtn.addEventListener('click', (e) => { e.preventDefault(); openProductModal(openBtn); });
+            if (cardImg) cardImg.addEventListener('click', () => openProductModal(openBtn));
         }
     });
 
-    // --- 4. СЛАЙДЕР ВНУТРИ МОДАЛКИ ---
+
+    // ===== СЛАЙДЕР В МОДАЛКЕ =====
+
     function changeSlide(direction = 'next') {
         const imgs = galleryTrack.querySelectorAll('img');
         if (imgs.length < 2) return;
         let idx = Array.from(imgs).findIndex(i => i.classList.contains('active'));
         imgs[idx].classList.remove('active');
-        let nextIdx = direction === 'next' ? (idx + 1) % imgs.length : (idx - 1 + imgs.length) % imgs.length;
+        let nextIdx = direction === 'next'
+            ? (idx + 1) % imgs.length
+            : (idx - 1 + imgs.length) % imgs.length;
         imgs[nextIdx].classList.add('active');
         adjustWidth();
     }
@@ -119,19 +139,10 @@ document.addEventListener('DOMContentLoaded', () => {
         sliderInterval = setInterval(() => changeSlide('next'), 4000);
     }
 
-    modal.querySelector('.gallery-nav.next').addEventListener('click', (e) => {
-        e.stopPropagation();
-        changeSlide('next');
-        startSlider();
-    });
+    modal.querySelector('.gallery-nav.next').addEventListener('click', (e) => { e.stopPropagation(); changeSlide('next'); startSlider(); });
+    modal.querySelector('.gallery-nav.prev').addEventListener('click', (e) => { e.stopPropagation(); changeSlide('prev'); startSlider(); });
 
-    modal.querySelector('.gallery-nav.prev').addEventListener('click', (e) => {
-        e.stopPropagation();
-        changeSlide('prev');
-        startSlider();
-    });
-
-    // --- 5. ЗАКРЫТИЕ ---
+    // Закрытие модалки
     const closeModal = () => {
         modal.classList.remove('active');
         document.body.style.overflow = '';
@@ -143,46 +154,38 @@ document.addEventListener('DOMContentLoaded', () => {
     window.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeModal(); });
 
 
-    // --- 6. ЛОГИКА БУРГЕР-МЕНЮ ---
+    // ===== БУРГЕР-МЕНЮ =====
+
     const burgerBtn = document.querySelector('.menu-icon');
     const mobileMenu = document.getElementById('mobile-menu');
     const closeMenuBtn = document.querySelector('.mobile-menu__close');
     const menuOverlay = document.querySelector('.mobile-menu__overlay');
 
+    const closeMobileMenu = () => {
+        mobileMenu.classList.remove('active');
+        document.body.style.overflow = '';
+    };
+
     if (burgerBtn && mobileMenu) {
-        const openMenu = () => {
+        burgerBtn.addEventListener('click', () => {
             mobileMenu.classList.add('active');
             document.body.style.overflow = 'hidden';
-        };
-
-        const closeMenu = () => {
-            mobileMenu.classList.remove('active');
-            document.body.style.overflow = '';
-        };
-
-        burgerBtn.addEventListener('click', openMenu);
-        closeMenuBtn.addEventListener('click', closeMenu);
-        menuOverlay.addEventListener('click', closeMenu);
+        });
+        closeMenuBtn.addEventListener('click', closeMobileMenu);
+        menuOverlay.addEventListener('click', closeMobileMenu);
     }
 
-    // --- 7. ТЕМНАЯ ТЕМА ---
-    const themeBtn = document.getElementById('theme-toggle');
-    const currentTheme = localStorage.getItem('theme');
 
-    // Проверяем, была ли сохранена тема
-    if (currentTheme === 'dark') {
+    // ===== ТЁМНАЯ ТЕМА =====
+
+    const themeBtn = document.getElementById('theme-toggle');
+    if (localStorage.getItem('theme') === 'dark') {
         document.body.classList.add('dark-theme');
     }
 
     themeBtn.addEventListener('click', () => {
-        // Переключаем класс
         document.body.classList.toggle('dark-theme');
-
-        // Сохраняем выбор в память браузера
-        let theme = 'light';
-        if (document.body.classList.contains('dark-theme')) {
-            theme = 'dark';
-        }
-        localStorage.setItem('theme', theme);
+        localStorage.setItem('theme', document.body.classList.contains('dark-theme') ? 'dark' : 'light');
     });
+
 });
