@@ -861,7 +861,8 @@ body.dark-theme .mobile-menu__content .mobile-menu__close {
   display: flex;
   flex-direction: column;
   align-items: flex-end;
-  padding-top: 18px;
+  padding-top: 0px;
+  padding-right: 10px;
   line-height: 1.2;
 }
 
